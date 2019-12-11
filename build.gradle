@@ -24,6 +24,13 @@ dependencies {
 	compile group: 'org.postgresql', name: 'postgresql', version: '9.3-1102-jdbc41'
 	compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.0.1'
 	testCompile("junit:junit")
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.0'
+	// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
+	compile group: 'org.springframework', name: 'spring-context', version: '4.3.9.RELEASE'
+	
+	//compile group: 'com.github.jsimone', name: 'webapp-runner', version: '9.0.27.0'
 }
 
 task stage() {

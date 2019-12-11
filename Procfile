@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar webapp-runner-8.5.11.3.jar --port $PORT build/libs/*.war
+web: java $JAVA_OPTS -jar webapp-runner-9.0.27.0.jar --port $PORT build/libs/*.war
