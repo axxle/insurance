@@ -32,12 +32,9 @@ dependencies {
 	compile group: 'org.springframework', name: 'spring-context', version: '4.3.9.RELEASE'
 	testCompile("junit:junit")
 	compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
-	//compile group: 'com.github.jsimone', name: 'webapp-runner', version: '9.0.27.0'
 }
 
 task stage() {
     dependsOn clean, war
 }
 war.mustRunAfter clean
-
-//stage.dependsOn(copyToLib)

@@ -13,23 +13,21 @@
     <button onclick="getPrefilledContract()">Создать договор</button>
     <button onclick="getContractById(123)">Открыть договор</button>
     <br>будущая форма <a href="contractFormDesign.html" target="_blank"> создания и редактирования договора</a>
+    <br><button onclick="getAllContracts()">Test: getAllContracts()</button>
 </p>
 <p>
-    <!-- Вывод всех существующих договор, в обратном порядке (id desc) -->
-    <table border="1">
-        <th>Серия-Номер</th>
-        <th>Дата заключения</th>
-        <th>Страхователь</th>
-        <th>Премия</th>
-        <th>Срок действия</th>
+<!-- Вывод всех существующих договор, в обратном порядке (id desc) -->
+<table border="1" id="allContractsTableId">
+    <thead>
         <tr>
-            <td>1</td>
-            <td>2</td>
-            <td>3</td>
-            <td>4</td>
-            <td>5</td>
+            <th>Серия-Номер</th>
+            <th>Дата заключения</th>
+            <th>Страхователь</th>
+            <th>Премия</th>
+            <th>Срок действия</th>
         </tr>
-    </table>
+    </thead>
+</table>
 </p>
 <script>
     (function (){
@@ -45,7 +43,21 @@
             url: "insurance/contract/",
             cache: false,
             success: function(allContracts){
-                console.log(allContracts)
+                //console.log(allContracts);
+                //почистить таблицу
+                $("#allContractsTableId > tbody").remove();
+                //заполнить полученными данными
+                $('#allContractsTableId').append(
+                    `<tbody>${allContracts.map(n =>
+                        `<tr>
+                          <td>${n.contractId}</td>
+                          <td>${n.contractDate}</td>
+                          <td>${n.policyHolder}</td>
+                          <td>${n.premium}</td>
+                          <td>${n.contractDuration}</td>
+                        </tr>`).join('')}
+                      </tbody>`
+                                    );
             }
         });
     }

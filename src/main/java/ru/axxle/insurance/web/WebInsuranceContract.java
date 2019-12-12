@@ -1,12 +1,14 @@
 package ru.axxle.insurance.web;
 
+import ru.axxle.insurance.ValidationUtils;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import javax.validation.constraints.Pattern;
 
 public class WebInsuranceContract {
-
-    @Pattern(regexp="^[a-zA-Z0-9]{3}", message="length must be 3")
+    //@Pattern(regexp="^[a-zA-Z0-9]{3}", message="length must be 3")
+    @Pattern(regexp= ValidationUtils.r1, message= ValidationUtils.r1_message)
     private String name;
     private String contractId;          // Серия-Номер 	contractSeries + '-' + contractNumber
     private Date contractDate;          // Дата заключения
