@@ -7,18 +7,21 @@
 	"data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAEBAAABAQAAAQEAAAEBAAABAQAAAQEAAP//AADwHwAA8B8AAPAfAADwHwAA8B8AAPAfAADwHwAA//8AAA=="
 	rel="shortcut icon" type="image/x-icon" />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <style>
+        .singleContractEditForm { display: none; }
+    </style>
 </head>
 <body>
-<p>
-    <button onclick="getPrefilledContract()">Создать договор</button>
-    <button onclick="getContractById(123)">Открыть договор</button>
-    <br>будущая форма <a href="contractFormDesign.html" target="_blank"> создания и редактирования договора</a>
-    <br><button onclick="getAllContracts()">Test: getAllContracts()</button>
-</p>
-<p>
-<!-- Вывод всех существующих договор, в обратном порядке (id desc) -->
-<table border="1" id="allContractsTableId">
-    <thead>
+<div class="allContractsView">
+    <p>
+        <button onclick="getPrefilledContract()">Создать договор</button>
+        <button onclick="getContractById(123)">Открыть договор</button>
+        <!--<br>будущая форма <a href="contractFormDesign.html" target="_blank"> создания и редактирования договора</a>
+        <br><button onclick="getAllContracts()">Test: getAllContracts()</button>-->
+    </p>
+    <!-- Вывод всех существующих договор, в обратном порядке (id desc) (прийдет отсортированный с бека) -->
+    <table border="1" id="allContractsTableId">
+        <thead>
         <tr>
             <th>Серия-Номер</th>
             <th>Дата заключения</th>
@@ -26,12 +29,121 @@
             <th>Премия</th>
             <th>Срок действия</th>
         </tr>
-    </thead>
-</table>
-</p>
+        </thead>
+    </table>
+</div>
+<div class="singleContractEditForm">
+    <fieldset>
+        <legend>Расчет</legend>
+        <p><label for="insuranceAmount">Страховая сумма</label><input type="text" id="insuranceAmount"></p>
+        <p><label for="realtyType">Тип недвижимости</label><input type="text" id="realtyType"></p>
+        <p><label for="realtyeBuildYear">Год постройки</label><input type="text" id="realtyeBuildYear"></p>
+        <p><label for="realtyArea">Площадь, кв.м.</label><input type="text" id="realtyArea"></p>
+        <p><label for="insuranceStartDate">Срок действия с</label><input type="date" id="insuranceStartDate"></p>
+        <p><label for="insuranceEndDate"> по </label><input type="date" id="insuranceEndDate"></p>
+        <p><button onclick="console.log('Провалидировать, и если ок - отправляем на сервер для расчета. Ответ выводим в нижеследующие поля')">Рассчитать</button></p>
+        <p><label for="insuranceCalcDate">Дата расчета</label><input type="text" id="insuranceCalcDate"></p>
+        <p><label for="insurancePremium">Премия</label><input type="text" id="insurancePremium"></p>
+    </fieldset>
+    <p><label for="insuranceContractId">№ договора</label><input type="text" id="insuranceContractId">
+        <label for="insuranceContractDate">Дата заключения</label><input type="text" id="insuranceContractDate"></p>
+    <p><b>СТРАХОВАТЕЛЬ</b></p>
+    <p><button>Выбрать</button><label for="holderFullName"> ФИО </label><input type="text" id="holderFullName"><button>Изменить</button></p>
+    <p><label for="holderBirthDate">Дата рождения</label><input type="date" id="holderBirthDate">
+        <label for="holderPassportSeries"> Паспорт серия </label><input type="text" id="holderPassportSeries">
+        <label for="holderPassportNumber"> номер </label><input type="text" id="holderPassportNumber">
+    </p>
+    <p><b>Адрес недвижимости</b></p><!-- RealtyLocation -->
+    <table>
+        <tr>
+            <td>
+                <select id="country">
+                    <option>Russia</option>
+                    <option>Other</option>
+                </select>
+            </td>
+            <td>
+                <input type="text" id="postIndex">
+            </td>
+            <td>
+                <input type="text" id="federalRegion">
+            </td>
+            <td>
+                <input type="text" id="district">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="country">государство</label>
+            </td>
+            <td>
+                <label for="postIndex">индекс</label>
+            </td>
+            <td>
+                <label for="federalRegion">республика, край, область</label>
+            </td>
+            <td>
+                <label for="district">район</label>
+            </td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td>
+                <input type="text" id="place">
+            </td>
+            <td>
+                <input type="text" id="street">
+            </td>
+            <td>
+                <input type="text" id="houseNumber">
+            </td>
+            <td>
+                <input type="text" id="houseBlock">
+            </td>
+            <td>
+                <input type="text" id="building">
+            </td>
+            <td>
+                <input type="text" id="apartment">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="place">населенный пункт</label>
+            </td>
+            <td>
+                <label for="street">улица</label>
+            </td>
+            <td>
+                <label for="houseNumber">дом</label>
+            </td>
+            <td>
+                <label for="houseBlock">корпус</label>
+            </td>
+            <td>
+                <label for="building">строение</label>
+            </td>
+            <td>
+                <label for="apartment">квартира</label>
+            </td>
+        </tr>
+    </table>
+    <p><b>КОММЕНТАРИЙ</b></p>
+    <table>
+        <tr>
+            <td align="right" valign="top">
+                комментарий к<br/> договору (не<br/> печатается на<br/> полисе)
+            </td>
+            <td>
+                <textarea rows="5" cols="100" name="text" id="contractComment"></textarea>
+            </td>
+        </tr>
+    </table>
+    <p><button>Сохранить</button><button onclick="returnToAllContractsView()">К списку договоров</button></p>
+</div>
 <script>
     (function (){
-        console.log('Дергаем GET /insurance/contracts/ и заполняем таблицу');
         getAllContracts(); // пагинация нужна ? пока обойдемся без нее
     }());
 
@@ -43,9 +155,7 @@
             url: "insurance/contract/",
             cache: false,
             success: function(allContracts){
-                //console.log(allContracts);
-                //почистить таблицу
-                $("#allContractsTableId > tbody").remove();
+                $("#allContractsTableId > tbody").remove(); //почистить таблицу
                 //заполнить полученными данными
                 $('#allContractsTableId').append(
                     `<tbody>${allContracts.map(n =>
@@ -71,7 +181,8 @@
             url: "insurance/contract/prefill",
             cache: false,
             success: function(prefilledContract){
-                console.log(prefilledContract)
+                //console.log(prefilledContract);
+                openContractEditForm(prefilledContract);
             }
         });
     }
@@ -85,10 +196,25 @@
             url: "insurance/contract/" + id,
             cache: false,
             success: function(contract){
-                console.log(contract)
+                //console.log(contract);
+                openContractEditForm(contract);
             }
         });
     }
+
+    function openContractEditForm(contract)
+    {
+        $('.singleContractEditForm').show();
+        $('.allContractsView').hide();
+        console.log(contract); //TO DO: заполнить форму
+    }
+
+    function returnToAllContractsView()
+    {
+        $('.singleContractEditForm').hide();    //скрыть блок редактирования (вернее все что class = "singleContractEditForm")
+        $('.allContractsView').show();          //отобразить блок просмотра списка все договоров (вернее все что class = "allContractsView")
+    }
+
 </script>
 </body>
 </html>
