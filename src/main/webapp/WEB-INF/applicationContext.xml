@@ -7,6 +7,9 @@
 
     <!-- Service -->
 
+
+    <bean id="webInsuranceContractService"  class="ru.axxle.insurance.web.service.WebInsuranceContractServiceImpl" />
+
     <!-- Postgres Heroku -->
     <bean class="java.net.URI" id="dbUrl">
         <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>

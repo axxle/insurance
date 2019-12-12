@@ -7,8 +7,32 @@
 	rel="shortcut icon" type="image/x-icon" />
 </head>
 <body>
-<h1>
-    Hello, Peoples!
-</h1>
+<p>
+    <button onclick="console.log('По этой кнопке открываем модалку и дергаем GET /insurance/contracts/prefill')">Создать договор</button>
+    <button onclick="console.log('По этой кнопке открываем модалку и подгружаем GET /insurance/contracts/{id} - только id надо выбрать из таблицы, если null - то дизейблить кнопку')">Открыть договор</button>
+</p>
+<p>
+    <!-- Вывод всех существующих договор, в обратном порядке (id desc) -->
+    <table border="1">
+        <th>Серия-Номер</th>
+        <th>Дата заключения</th>
+        <th>Страхователь</th>
+        <th>Премия</th>
+        <th>Срок действия</th>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+    </table>
+</p>
+<script>
+    (function (){
+        console.log('Дергаем GET /insurance/contracts/ и заполняем таблицу');
+        // пагинация нужна ? пока обойдемся без нее
+    }());
+</script>
 </body>
 </html>

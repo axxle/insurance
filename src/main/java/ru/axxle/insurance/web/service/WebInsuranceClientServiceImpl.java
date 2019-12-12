@@ -1,4 +1,4 @@
-package ru.axxle.insurance.web;
+package ru.axxle.insurance.web.service;
 
-public class WebInsuranceClientServiceImpl {
+public class WebInsuranceClientServiceImpl implements WebInsuranceClientService {
 }

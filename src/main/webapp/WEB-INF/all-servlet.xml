@@ -12,7 +12,7 @@
 
     <mvc:annotation-driven/>                                 <!-- чтобы работал @Autowired в том числе -->
 
-    <context:component-scan base-package="ru.axxle.insurance.controller"/>
+    <context:component-scan base-package="ru.axxle.insurance.web.controller"/>
 
     <mvc:resources mapping="/resources/**" location="/WEB-INF/resources/" />
 
