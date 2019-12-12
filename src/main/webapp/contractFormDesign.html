@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Forms Design</title>
+    <meta charset="utf-8">
+	<link href=
+	"data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAEBAAABAQAAAQEAAAEBAAABAQAAAQEAAP//AADwHwAA8B8AAPAfAADwHwAA8B8AAPAfAADwHwAA//8AAA=="
+	rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+<fieldset>
+    <legend>Расчет</legend>
+    <p><label for="insureAmount">Страховая сумма</label><input type="text" id="insureAmount"></p>
+    <p><label for="realEstateType">Тип недвижимости</label><input type="text" id="realEstateType"></p>
+    <p><label for="buildYear">Год постройки</label><input type="text" id="buildYear"></p>
+    <p><label for="area">Площадь, кв.м.</label><input type="text" id="area"></p>
+    <p><label for="startDate">Срок действия с</label><input type="date" id="startDate"></p>
+    <p><label for="endDate"> по </label><input type="date" id="endDate"></p>
+    <p><label for="email">E-mail</label><input type="email" id="email"></p>
+    <p><button onclick="console.log('Провалидировать, и если ок - отправляем на сервер для расчета. Ответ выводим в нижеследующие поля')">Рассчитать</button></p>
+    <p><label for="calcDate">Дата расчета</label><input type="text" id="calcDate"></p>
+    <p><label for="premium">Премия</label><input type="text" id="premium"></p>
+</fieldset>
+<p><label for="contractId">№ договора</label><input type="text" id="contractId"><label for="contractDate">Дата заключения</label><input type="text" id="contractDate"></p>
+<p><b>СТРАХОВАТЕЛЬ</b></p>
+<p><button>Выбрать</button><label for="fullName"> ФИО </label><input type="text" id="fullName"><button>Изменить</button></p>
+<p><label for="birthDate">Дата рождения</label><input type="date" id="birthDate">
+    <label for="passportSeries"> Паспорт серия </label><input type="text" id="passportSeries">
+    <label for="passportNumber"> номер </label><input type="text" id="passportNumber">
+</p>
+<p><b>Адрес недвижимости</b></p>
+<table>
+    <tr>
+        <td>
+            <select id="country">
+                <option>Russia</option>
+                <option>Other</option>
+            </select>
+        </td>
+        <td>
+            <input type="text" id="postIndex">
+        </td>
+        <td>
+            <input type="text" id="federationRegion">
+        </td>
+        <td>
+            <input type="text" id="district">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="country">государство</label>
+        </td>
+        <td>
+            <label for="postIndex">индекс</label>
+        </td>
+        <td>
+            <label for="federationRegion">республика, край, область</label>
+        </td>
+        <td>
+            <label for="district">район</label>
+        </td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td>
+            <input type="text" id="locality">
+        </td>
+        <td>
+            <input type="text" id="street">
+        </td>
+        <td>
+            <input type="text" id="houseNumber">
+        </td>
+        <td>
+            <input type="text" id="houseBlock">
+        </td>
+        <td>
+            <input type="text" id="building">
+        </td>
+        <td>
+            <input type="text" id="apartment">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label for="locality">населенный пункт</label>
+        </td>
+        <td>
+            <label for="street">улица</label>
+        </td>
+        <td>
+            <label for="houseNumber">дом</label>
+        </td>
+        <td>
+            <label for="houseBlock">корпус</label>
+        </td>
+        <td>
+            <label for="building">строение</label>
+        </td>
+        <td>
+            <label for="apartment">квартира</label>
+        </td>
+    </tr>
+</table>
+<p><b>КОММЕНТАРИЙ</b></p>
+<table>
+    <tr>
+        <td align="right" valign="top">
+            комментарий к<br/> договору (не<br/> печатается на<br/> полисе)
+        </td>
+        <td>
+            <textarea rows="5" cols="100" name="text" id="contractComment"></textarea>
+        </td>
+    </tr>
+</table>
+
+<script>
+</script>
+</body>
+</html>
