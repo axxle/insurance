@@ -10,25 +10,25 @@
 <body>
 <fieldset>
     <legend>Расчет</legend>
-    <p><label for="insureAmount">Страховая сумма</label><input type="text" id="insureAmount"></p>
-    <p><label for="realEstateType">Тип недвижимости</label><input type="text" id="realEstateType"></p>
-    <p><label for="buildYear">Год постройки</label><input type="text" id="buildYear"></p>
-    <p><label for="area">Площадь, кв.м.</label><input type="text" id="area"></p>
-    <p><label for="startDate">Срок действия с</label><input type="date" id="startDate"></p>
-    <p><label for="endDate"> по </label><input type="date" id="endDate"></p>
-    <p><label for="email">E-mail</label><input type="email" id="email"></p>
+    <p><label for="insuranceAmount">Страховая сумма</label><input type="text" id="insuranceAmount"></p>
+    <p><label for="realtyType">Тип недвижимости</label><input type="text" id="realtyType"></p>
+    <p><label for="realtyeBuildYear">Год постройки</label><input type="text" id="realtyeBuildYear"></p>
+    <p><label for="realtyArea">Площадь, кв.м.</label><input type="text" id="realtyArea"></p>
+    <p><label for="insuranceStartDate">Срок действия с</label><input type="date" id="insuranceStartDate"></p>
+    <p><label for="insuranceEndDate"> по </label><input type="date" id="insuranceEndDate"></p>
     <p><button onclick="console.log('Провалидировать, и если ок - отправляем на сервер для расчета. Ответ выводим в нижеследующие поля')">Рассчитать</button></p>
-    <p><label for="calcDate">Дата расчета</label><input type="text" id="calcDate"></p>
-    <p><label for="premium">Премия</label><input type="text" id="premium"></p>
+    <p><label for="insuranceCalcDate">Дата расчета</label><input type="text" id="insuranceCalcDate"></p>
+    <p><label for="insurancePremium">Премия</label><input type="text" id="insurancePremium"></p>
 </fieldset>
-<p><label for="contractId">№ договора</label><input type="text" id="contractId"><label for="contractDate">Дата заключения</label><input type="text" id="contractDate"></p>
+<p><label for="insuranceContractId">№ договора</label><input type="text" id="insuranceContractId">
+    <label for="insuranceContractDate">Дата заключения</label><input type="text" id="insuranceContractDate"></p>
 <p><b>СТРАХОВАТЕЛЬ</b></p>
-<p><button>Выбрать</button><label for="fullName"> ФИО </label><input type="text" id="fullName"><button>Изменить</button></p>
-<p><label for="birthDate">Дата рождения</label><input type="date" id="birthDate">
-    <label for="passportSeries"> Паспорт серия </label><input type="text" id="passportSeries">
-    <label for="passportNumber"> номер </label><input type="text" id="passportNumber">
+<p><button>Выбрать</button><label for="holderFullName"> ФИО </label><input type="text" id="holderFullName"><button>Изменить</button></p>
+<p><label for="holderBirthDate">Дата рождения</label><input type="date" id="holderBirthDate">
+    <label for="holderPassportSeries"> Паспорт серия </label><input type="text" id="holderPassportSeries">
+    <label for="holderPassportNumber"> номер </label><input type="text" id="holderPassportNumber">
 </p>
-<p><b>Адрес недвижимости</b></p>
+<p><b>Адрес недвижимости</b></p><!-- RealtyLocation -->
 <table>
     <tr>
         <td>
@@ -41,7 +41,7 @@
             <input type="text" id="postIndex">
         </td>
         <td>
-            <input type="text" id="federationRegion">
+            <input type="text" id="federalRegion">
         </td>
         <td>
             <input type="text" id="district">
@@ -55,7 +55,7 @@
             <label for="postIndex">индекс</label>
         </td>
         <td>
-            <label for="federationRegion">республика, край, область</label>
+            <label for="federalRegion">республика, край, область</label>
         </td>
         <td>
             <label for="district">район</label>
@@ -65,7 +65,7 @@
 <table>
     <tr>
         <td>
-            <input type="text" id="locality">
+            <input type="text" id="place">
         </td>
         <td>
             <input type="text" id="street">
@@ -85,7 +85,7 @@
     </tr>
     <tr>
         <td>
-            <label for="locality">населенный пункт</label>
+            <label for="place">населенный пункт</label>
         </td>
         <td>
             <label for="street">улица</label>
