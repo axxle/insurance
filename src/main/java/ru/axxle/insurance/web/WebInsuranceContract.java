@@ -12,6 +12,11 @@ public class WebInsuranceContract {
 	
 	public WebInsuranceContract(){}
 
+    public WebInsuranceContract(String contractId) {
+        this.contractId = contractId;
+    }
+
+
     public WebInsuranceContract(String contractId, Date contractDate, String policyHolder, BigDecimal premium, String contractDuration) {
         this.contractId = contractId;
         this.contractDate = contractDate;

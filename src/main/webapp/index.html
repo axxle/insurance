@@ -5,11 +5,12 @@
 	<link href=
 	"data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAEBAAABAQAAAQEAAAEBAAABAQAAAQEAAP//AADwHwAA8B8AAPAfAADwHwAA8B8AAPAfAADwHwAA//8AAA=="
 	rel="shortcut icon" type="image/x-icon" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 <p>
-    <button onclick="console.log('По этой кнопке открываем модалку и дергаем GET /insurance/contracts/prefill')">Создать договор</button>
-    <button onclick="console.log('По этой кнопке открываем модалку и подгружаем GET /insurance/contracts/{id} - только id надо выбрать из таблицы, если null - то дизейблить кнопку')">Открыть договор</button>
+    <button onclick="getPrefilledContract()">Создать договор</button>
+    <button onclick="getContractById(123)">Открыть договор</button>
 </p>
 <p>
     <!-- Вывод всех существующих договор, в обратном порядке (id desc) -->
@@ -31,8 +32,49 @@
 <script>
     (function (){
         console.log('Дергаем GET /insurance/contracts/ и заполняем таблицу');
-        // пагинация нужна ? пока обойдемся без нее
+        getAllContracts(); // пагинация нужна ? пока обойдемся без нее
     }());
+
+    function getAllContracts()
+    {
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "insurance/contract/",
+            cache: false,
+            success: function(allContracts){
+                console.log(allContracts)
+            }
+        });
+    }
+
+    function getPrefilledContract()
+    {
+        console.log('По этой кнопке открываем модалку и подгружаем GET /insurance/contracts/{id} - только id надо выбрать из таблицы, если null - то дизейблить кнопку');
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "insurance/contract/prefill",
+            cache: false,
+            success: function(prefilledContract){
+                console.log(prefilledContract)
+            }
+        });
+    }
+
+    function getContractById(id)
+    {
+        console.log('По этой кнопке открываем модалку и дергаем GET /insurance/contracts/prefill');
+        $.ajax({
+            type: "GET",
+            contentType: "application/json",
+            url: "insurance/contract/" + id,
+            cache: false,
+            success: function(contract){
+                console.log(contract)
+            }
+        });
+    }
 </script>
 </body>
 </html>
