@@ -7,9 +7,7 @@ import java.util.Date;
 import javax.validation.constraints.Pattern;
 
 public class WebInsuranceContract {
-    //@Pattern(regexp="^[a-zA-Z0-9]{3}", message="length must be 3")
-    @Pattern(regexp= ValidationUtils.r1, message= ValidationUtils.r1_message)
-    private String name;
+    @Pattern(regexp= ValidationUtils.insuranceContractIdCheck, message= ValidationUtils.insuranceContractIdCheckMessage)
     private String contractId;          // Серия-Номер 	contractSeries + '-' + contractNumber
     private Date contractDate;          // Дата заключения
     private String policyHolder;        // Страхователь

@@ -117,7 +117,21 @@
 </table>
 <p><button>Сохранить</button><button>К списку договоров</button></p>
 
+<button id="openDialog">Открыть окно</button>
+<dialog>
+    <p>Полинезийцы называют Млечный путь Манго-Роа-И-Ата,
+        что в переводе с маори означает «Длинная акула на рассвете».</p>
+    <p><button id="closeDialog">Закрыть окно</button></p>
+</dialog>
 <script>
+    var dialog = document.querySelector('dialog');
+    document.querySelector('#openDialog').onclick = function() {
+        //dialog.show(); // Показываем диалоговое окно
+        dialog.showModal(); // Показываем диалоговое окно
+    }
+    document.querySelector('#closeDialog').onclick = function() {
+        dialog.close(); // Прячем диалоговое окно
+    }
 </script>
 </body>
 </html>

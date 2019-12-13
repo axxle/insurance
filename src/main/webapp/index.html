@@ -9,6 +9,13 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <style>
         .singleContractEditForm { display: none; }
+        input:invalid {
+            border-color: red;
+        }
+        input,
+        input:valid {
+            border-color: #ccc;
+        }
     </style>
 </head>
 <body>
@@ -45,10 +52,20 @@
         <p><label for="insuranceCalcDate">Дата расчета</label><input type="text" id="insuranceCalcDate"></p>
         <p><label for="insurancePremium">Премия</label><input type="text" id="insurancePremium"></p>
     </fieldset>
-    <p><label for="insuranceContractId">№ договора</label><input type="text" id="insuranceContractId">
-        <label for="insuranceContractDate">Дата заключения</label><input type="text" id="insuranceContractDate"></p>
+    <p>
+        <label for="insuranceContractId">№ договора</label>
+        <!--14--  № договора	Целое	Доступно	Обязательное	Ввод с клавиатуры		Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться -->
+        <!--условие <не должны повторяться> будем проверять на беке при сохранении. Либо нужен отдельный рест для проверки. Считаю вообще не целесообразным вводить вручную номер договора,
+         возможно ошибка в требованиях, уточнить -->
+        <input type="text" id="insuranceContractId" pattern="[0-9]{6}" title="Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться">
+
+        <label for="insuranceContractDate" required>Дата заключения</label>
+        <!--15-- Дата заключения	Дата	Нет	Обязательное	Присваивается системой	Текущая дата	 -->
+        <!--нужно будет засетить value, данные взять или из префила, либо системное время на фронте-->
+        <input type="date" id="insuranceContractDate" value="2018-07-22" readonly></p>
+
     <p><b>СТРАХОВАТЕЛЬ</b></p>
-    <p><button>Выбрать</button><label for="holderFullName"> ФИО </label><input type="text" id="holderFullName"><button>Изменить</button></p>
+    <p><button id="openSearchHolderDialog">Выбрать</button><label for="holderFullName"> ФИО </label><input type="text" id="holderFullName"><button>Изменить</button></p>
     <p><label for="holderBirthDate">Дата рождения</label><input type="date" id="holderBirthDate">
         <label for="holderPassportSeries"> Паспорт серия </label><input type="text" id="holderPassportSeries">
         <label for="holderPassportNumber"> номер </label><input type="text" id="holderPassportNumber">
@@ -142,6 +159,133 @@
     </table>
     <p><button>Сохранить</button><button onclick="returnToAllContractsView()">К списку договоров</button></p>
 </div>
+
+<!-- [Форма поиска клиента] - открыите по кнопке <Выбрать> в блоке СТРАХОВАТЕЛИ
+Группа полей / Поле	        Тип поля	Продавец:           Продавец: 	        Способ указания значения	Значение, указываемое при открытии страницы	Прочие особенности поведения
+                                        Доступность         Обязательность
+                                        для редактирования
+39--[Форма поиска клиента]
+40--Фамилия	                Строка	    Доступно	        Нет	                Ввод с клавиатуры
+41--Имя	                    Строка	    Доступно	        Нет	                Ввод с клавиатуры
+42--Отчество	            Строка	    Доступно	        Нет	                Ввод с клавиатуры
+43--ФИО	                    Строка	    Нет	                Нет	                Присваивается системой		Подставляются данные из клиента
+44--Дата рождения	        Строка	    Нет	                Нет	                Присваивается системой		Подставляются данные из клиента
+45--Паспортные данные	    Строка	    Нет	                Нет	                Присваивается системой		Подставляются данные из клиента
+46--Лупа	                Кнопка	    Доступно				                                            Поиск по указанным ФИО, если ничего не введено, то отображаться всех клиентов
+47--Выбрать/Новый/Закрыть	Кнопки	    Доступно
+-->
+<dialog id="searchHolderDialog">
+    <table>
+        <tr>
+            <td>ФИО</td>
+            <td>
+                <input type="text" id="lastName">
+            </td>
+            <td>
+                <input type="text" id="firstName">
+            </td>
+            <td>
+                <input type="text" id="parentName">
+            </td>
+            <td><button>Поиск</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <label for="lastName">(фамилия)</label>
+            </td>
+            <td>
+                <label for="firstName">(имя)</label>
+            </td>
+            <td>
+                <label for="parentName">(отчество)</label>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="holdersView">
+        <table id="holdersDictTableId">
+            <thead>
+            <tr>
+                <th>ФИО</th>
+                <th>Дата рождения</th>
+                <th>Паспортные данные</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+    <div class="emptyHoldersView">Нет подходящих записей</div>
+    <p><button id="openExistingHolderDialog">Выбрать</button>
+        <button id="openCreateNewHolderDialog">Новый</button>
+        <button id="closeSearchHolderDialog">Закрыть</button></p>
+</dialog>
+
+<dialog id="existingHolderDialog">
+    <table>
+        <tr>
+            <td>ФИО</td>
+            <td>
+                <input type="text" id="openHolderLastName">
+            </td>
+            <td>
+                <input type="text" id="openHolderFirstName">
+            </td>
+            <td>
+                <input type="text" id="openHolderParentName">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <label for="openHolderLastName">(фамилия)</label>
+            </td>
+            <td>
+                <label for="openHolderFirstName">(имя)</label>
+            </td>
+            <td>
+                <label for="openHolderParentName">(отчество)</label>
+            </td>
+        </tr>
+    </table>
+    <p><label for="openHolderBirthDate">Дата рождения</label><input type="date" id="openHolderBirthDate"></p>
+    <p><label for="openHolderPassportSeries"> Паспорт серия </label><input type="text" id="openHolderPassportSeries">
+    <label for="openHolderPassportNumber"> номер </label><input type="text" id="openHolderPassportNumber"></p>
+    <p><button id="getAndCloseExistingHolderDialog">Сохранить</button><button id="closeExistingHolderDialog">Отменить</button></p>
+</dialog>
+
+<dialog id="createNewHolderDialog">
+    <table>
+        <tr>
+            <td>ФИО</td>
+            <td>
+                <input type="text" id="newHolderLastName">
+            </td>
+            <td>
+                <input type="text" id="newHolderFirstName">
+            </td>
+            <td>
+                <input type="text" id="newHolderParentName">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <label for="newHolderLastName">(фамилия)</label>
+            </td>
+            <td>
+                <label for="newHolderFirstName">(имя)</label>
+            </td>
+            <td>
+                <label for="newHolderParentName">(отчество)</label>
+            </td>
+        </tr>
+    </table>
+    <p><label for="newHolderBirthDate">Дата рождения</label><input type="date" id="newHolderBirthDate"></p>
+    <p><label for="newHolderPassportSeries"> Паспорт серия </label><input type="text" id="newHolderPassportSeries">
+        <label for="newHolderPassportNumber"> номер </label><input type="text" id="newHolderPassportNumber"></p>
+    <p><button id="saveAndCloseExistingHolderDialog">Сохранить</button><button id="closeCreateNewHolderDialog">Отменить</button></p>
+</dialog>
+
 <script>
     (function (){
         getAllContracts(); // пагинация нужна ? пока обойдемся без нее
@@ -215,6 +359,38 @@
         $('.allContractsView').show();          //отобразить блок просмотра списка все договоров (вернее все что class = "allContractsView")
     }
 
+    var searchHoldersDialog = document.querySelector('#searchHolderDialog');
+    document.querySelector('#openSearchHolderDialog').onclick = function() {
+        searchHoldersDialog.showModal();
+    }
+    document.querySelector('#closeSearchHolderDialog').onclick = function() {
+        searchHoldersDialog.close();
+    }
+
+    var existingHolderDialog = document.querySelector('#existingHolderDialog');
+    document.querySelector('#openExistingHolderDialog').onclick = function() {
+        existingHolderDialog.showModal();
+    }
+    document.querySelector('#closeExistingHolderDialog').onclick = function() {
+        existingHolderDialog.close();
+    }
+    document.querySelector('#getAndCloseExistingHolderDialog').onclick = function() {
+        //передать в модель договора
+        existingHolderDialog.close();
+    }
+
+    var createNewHolderDialog = document.querySelector('#createNewHolderDialog');
+    document.querySelector('#openCreateNewHolderDialog').onclick = function() {
+        createNewHolderDialog.showModal();
+    }
+    document.querySelector('#closeCreateNewHolderDialog').onclick = function() {
+        createNewHolderDialog.close();
+    }
+    document.querySelector('#saveAndCloseExistingHolderDialog').onclick = function() {
+        //сохранить на сервере
+        //передать в модель договора
+        createNewHolderDialog.close();
+    }
 </script>
 </body>
 </html>

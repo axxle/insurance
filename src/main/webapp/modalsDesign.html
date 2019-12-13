@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modals Design</title>
+    <meta charset="utf-8">
+	<link href=
+	"data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAEBAAABAQAAAQEAAAEBAAABAQAAAQEAAP//AADwHwAA8B8AAPAfAADwHwAA8B8AAPAfAADwHwAA//8AAA=="
+	rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+<button id="openDialog">Открыть окно</button>
+<dialog>
+    <p>Полинезийцы называют Млечный путь Манго-Роа-И-Ата,
+        что в переводе с маори означает «Длинная акула на рассвете».</p>
+    <p><button id="closeDialog">Закрыть окно</button></p>
+</dialog>
+<script>
+    var dialog = document.querySelector('dialog');
+    document.querySelector('#openDialog').onclick = function() {
+        //dialog.show(); // Показываем диалоговое окно
+        dialog.showModal(); // Показываем диалоговое окно
+    }
+    document.querySelector('#closeDialog').onclick = function() {
+        dialog.close(); // Прячем диалоговое окно
+    }
+</script>
+</body>
+</html>
