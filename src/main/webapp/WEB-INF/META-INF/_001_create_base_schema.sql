@@ -1,1 +1,3 @@
-DROP TABLE comments;
+DROP TABLE contracts;
+
+DROP TABLE clientsDict;

@@ -1,32 +1,25 @@
 package ru.axxle.insurance.web;
 
-import ru.axxle.insurance.ValidationUtils;
-
-import java.math.BigDecimal;
-import java.util.Date;
-import javax.validation.constraints.Pattern;
-
 public class WebInsuranceContract {
-    @Pattern(regexp= ValidationUtils.insuranceContractIdCheck, message= ValidationUtils.insuranceContractIdCheckMessage)
-    private String contractId;          // Серия-Номер 	contractSeries + '-' + contractNumber
-    private Date contractDate;          // Дата заключения
-    private String policyHolder;        // Страхователь
-    private BigDecimal premium;         // Премия
-    private String contractDuration;    // Срок действия contractStartDate - contractEndDate
-	
-	public WebInsuranceContract(){}
 
-    public WebInsuranceContract(String contractId) {
-        this.contractId = contractId;
+    private String contractId;
+    private String contractDate;
+    private String status;
+
+    private WebInsuranceCalc calcInfo = new WebInsuranceCalc();
+    private WebInsuranceClient holderInfo = new WebInsuranceClient();
+    private WebRealtyLocation realtyLocation = new WebRealtyLocation();
+
+    public WebInsuranceContract() {
     }
 
-
-    public WebInsuranceContract(String contractId, Date contractDate, String policyHolder, BigDecimal premium, String contractDuration) {
+    public WebInsuranceContract(String contractId, String contractDate, String status, WebInsuranceCalc calcInfo, WebInsuranceClient holderInfo, WebRealtyLocation realtyLocation) {
         this.contractId = contractId;
         this.contractDate = contractDate;
-        this.policyHolder = policyHolder;
-        this.premium = premium;
-        this.contractDuration = contractDuration;
+        this.status = status;
+        this.calcInfo = calcInfo;
+        this.holderInfo = holderInfo;
+        this.realtyLocation = realtyLocation;
     }
 
     public String getContractId() {
@@ -37,35 +30,43 @@ public class WebInsuranceContract {
         this.contractId = contractId;
     }
 
-    public Date getContractDate() {
+    public String getContractDate() {
         return contractDate;
     }
 
-    public void setContractDate(Date contractDate) {
+    public void setContractDate(String contractDate) {
         this.contractDate = contractDate;
     }
 
-    public String getPolicyHolder() {
-        return policyHolder;
+    public String getStatus() {
+        return status;
     }
 
-    public void setPolicyHolder(String policyHolder) {
-        this.policyHolder = policyHolder;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
-    public BigDecimal getPremium() {
-        return premium;
+    public WebInsuranceCalc getCalcInfo() {
+        return calcInfo;
     }
 
-    public void setPremium(BigDecimal premium) {
-        this.premium = premium;
+    public void setCalcInfo(WebInsuranceCalc calcInfo) {
+        this.calcInfo = calcInfo;
     }
 
-    public String getContractDuration() {
-        return contractDuration;
+    public WebInsuranceClient getHolderInfo() {
+        return holderInfo;
     }
 
-    public void setContractDuration(String contractDuration) {
-        this.contractDuration = contractDuration;
+    public void setHolderInfo(WebInsuranceClient holderInfo) {
+        this.holderInfo = holderInfo;
+    }
+
+    public WebRealtyLocation getRealtyLocation() {
+        return realtyLocation;
+    }
+
+    public void setRealtyLocation(WebRealtyLocation realtyLocation) {
+        this.realtyLocation = realtyLocation;
     }
 }

@@ -1,17 +1,15 @@
 package ru.axxle.insurance.web;
 
-import java.util.Date;
-
 public class WebInsuranceClient {
-    private String fullName;        // ФИО
-    private Date birthDate;         // Дата рождения
-    private String passportSeries;  // Паспорт серия
-    private String passportNumber;  // Паспорт номер
+    private String fullName;
+    private String birthDate;
+    private String passportSeries;
+    private String passportNumber;
 
     public WebInsuranceClient() {
     }
 
-    public WebInsuranceClient(String fullName, Date birthDate, String passportSeries, String passportNumber) {
+    public WebInsuranceClient(String fullName, String birthDate, String passportSeries, String passportNumber) {
         this.fullName = fullName;
         this.birthDate = birthDate;
         this.passportSeries = passportSeries;
@@ -26,11 +24,11 @@ public class WebInsuranceClient {
         this.fullName = fullName;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

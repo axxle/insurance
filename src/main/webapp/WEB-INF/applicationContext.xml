@@ -1,15 +1,20 @@
 <?xml  version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:property-placeholder location="/WEB-INF/META-INF/app.properties" />
 
     <!-- DAO -->
 
     <!-- Service -->
-
-
+    <bean id="webInsuranceContractViewService"  class="ru.axxle.insurance.web.service.WebInsuranceContractViewServiceImpl" />
     <bean id="webInsuranceContractService"  class="ru.axxle.insurance.web.service.WebInsuranceContractServiceImpl" />
-
+    <bean id="webInsuranceCalcService"  class="ru.axxle.insurance.web.service.WebInsuranceCalcServiceImpl">
+        <constructor-arg type = "java.lang.String" name="k1" value = "${calc.k1}" />
+        <constructor-arg type = "java.lang.String" name="k2" value = "${calc.k2}"/>
+    </bean>
     <!-- Postgres Heroku -->
     <bean class="java.net.URI" id="dbUrl">
         <constructor-arg value="#{systemEnvironment['DATABASE_URL']}"/>

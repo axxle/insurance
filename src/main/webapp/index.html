@@ -1,309 +1,301 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Insurance App</title>
-    <meta charset="utf-8">
+	<title>Insurance App</title>
+	<meta charset="utf-8">
 	<link href=
-	"data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAEBAAABAQAAAQEAAAEBAAABAQAAAQEAAP//AADwHwAA8B8AAPAfAADwHwAA8B8AAPAfAADwHwAA//8AAA=="
-	rel="shortcut icon" type="image/x-icon" />
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <style>
-        .singleContractEditForm { display: none; }
-        input:invalid {
-            border-color: red;
-        }
-        input,
-        input:valid {
-            border-color: #ccc;
-        }
-    </style>
+				  "data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/4MA//+DAP//gwD//4MA//+DAP//gwD//4MA/wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP+DAP//gwD//4MA//+DAP//gwD//4MA//+DAP8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/gwD//4MA//+DAP//gwD//4MA//+DAP//gwD/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQEAAAEBAAABAQAAAQEAAAEBAAABAQAAAQEAAP//AADwHwAA8B8AAPAfAADwHwAA8B8AAPAfAADwHwAA//8AAA=="
+		  rel="shortcut icon" type="image/x-icon" />
+	<style>
+		table {border: 0px solid black;}
+		td {
+			/*padding: 5px; /* Поля вокруг содержимого ячеек */
+			border: 0px solid black; /* Граница вокруг ячеек */
+		}
+		.notDisplayed { display: none; }
+		.alignR { text-align: right; }
+		.alignL { text-align: left; }
+		.alignC { text-align: center; }
+		#singleContractEditForm { display: none; }
+
+		.contractCommentArea {
+			width: 450px;
+			height: 100px;
+		}
+		#contractCommentDescription {
+			width: 100px;
+			height: 100px;
+		}
+		input:invalid {
+			border-color: red;
+		}
+		input,
+		input:valid {
+			border-color: #ccc;
+		}
+
+		.backgroundGrey {background-color: #cccccc}
+
+		.tFormContainer {
+			width: auto;
+			display: inline-block;
+		}
+
+		.tForm { width: 100%; }
+
+	</style>
+	<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>-->
+	<script src="js/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
+
 <body>
-<div class="allContractsView">
-    <p>
-        <button onclick="getPrefilledContract()">Создать договор</button>
-        <button onclick="getContractById(123)">Открыть договор</button>
-        <!--<br>будущая форма <a href="contractFormDesign.html" target="_blank"> создания и редактирования договора</a>
-        <br><button onclick="getAllContracts()">Test: getAllContracts()</button>-->
-    </p>
-    <!-- Вывод всех существующих договор, в обратном порядке (id desc) (прийдет отсортированный с бека) -->
-    <table border="1" id="allContractsTableId">
-        <thead>
-        <tr>
-            <th>Серия-Номер</th>
-            <th>Дата заключения</th>
-            <th>Страхователь</th>
-            <th>Премия</th>
-            <th>Срок действия</th>
-        </tr>
-        </thead>
-    </table>
-</div>
-<div class="singleContractEditForm">
-    <fieldset>
-        <legend>Расчет</legend>
-        <p><label for="insuranceAmount">Страховая сумма</label><input type="text" id="insuranceAmount"></p>
-        <p><label for="realtyType">Тип недвижимости</label><input type="text" id="realtyType"></p>
-        <p><label for="realtyeBuildYear">Год постройки</label><input type="text" id="realtyeBuildYear"></p>
-        <p><label for="realtyArea">Площадь, кв.м.</label><input type="text" id="realtyArea"></p>
-        <p><label for="insuranceStartDate">Срок действия с</label><input type="date" id="insuranceStartDate"></p>
-        <p><label for="insuranceEndDate"> по </label><input type="date" id="insuranceEndDate"></p>
-        <p><button onclick="console.log('Провалидировать, и если ок - отправляем на сервер для расчета. Ответ выводим в нижеследующие поля')">Рассчитать</button></p>
-        <p><label for="insuranceCalcDate">Дата расчета</label><input type="text" id="insuranceCalcDate"></p>
-        <p><label for="insurancePremium">Премия</label><input type="text" id="insurancePremium"></p>
-    </fieldset>
-    <p>
-        <label for="insuranceContractId">№ договора</label>
-        <!--14--  № договора	Целое	Доступно	Обязательное	Ввод с клавиатуры		Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться -->
-        <!--условие <не должны повторяться> будем проверять на беке при сохранении. Либо нужен отдельный рест для проверки. Считаю вообще не целесообразным вводить вручную номер договора,
-         возможно ошибка в требованиях, уточнить -->
-        <input type="text" id="insuranceContractId" pattern="[0-9]{6}" title="Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться">
 
-        <label for="insuranceContractDate" required>Дата заключения</label>
-        <!--15-- Дата заключения	Дата	Нет	Обязательное	Присваивается системой	Текущая дата	 -->
-        <!--нужно будет засетить value, данные взять или из префила, либо системное время на фронте-->
-        <input type="date" id="insuranceContractDate" value="2018-07-22" readonly></p>
+<div class="tFormContainer" id="allContractsView">
+	<table>
+		<tr>
+			<td><button onclick="openPrefilledContract()">Создать договор</button></td>
+			<td><button onclick="openContractById(currentSelectedContract)">Открыть договор</button></td>
+			<td></td>
+		</tr>
+	</table>
 
-    <p><b>СТРАХОВАТЕЛЬ</b></p>
-    <p><button id="openSearchHolderDialog">Выбрать</button><label for="holderFullName"> ФИО </label><input type="text" id="holderFullName"><button>Изменить</button></p>
-    <p><label for="holderBirthDate">Дата рождения</label><input type="date" id="holderBirthDate">
-        <label for="holderPassportSeries"> Паспорт серия </label><input type="text" id="holderPassportSeries">
-        <label for="holderPassportNumber"> номер </label><input type="text" id="holderPassportNumber">
-    </p>
-    <p><b>Адрес недвижимости</b></p><!-- RealtyLocation -->
-    <table>
-        <tr>
-            <td>
-                <select id="country">
-                    <option>Russia</option>
-                    <option>Other</option>
-                </select>
-            </td>
-            <td>
-                <input type="text" id="postIndex">
-            </td>
-            <td>
-                <input type="text" id="federalRegion">
-            </td>
-            <td>
-                <input type="text" id="district">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="country">государство</label>
-            </td>
-            <td>
-                <label for="postIndex">индекс</label>
-            </td>
-            <td>
-                <label for="federalRegion">республика, край, область</label>
-            </td>
-            <td>
-                <label for="district">район</label>
-            </td>
-        </tr>
-    </table>
-    <table>
-        <tr>
-            <td>
-                <input type="text" id="place">
-            </td>
-            <td>
-                <input type="text" id="street">
-            </td>
-            <td>
-                <input type="text" id="houseNumber">
-            </td>
-            <td>
-                <input type="text" id="houseBlock">
-            </td>
-            <td>
-                <input type="text" id="building">
-            </td>
-            <td>
-                <input type="text" id="apartment">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="place">населенный пункт</label>
-            </td>
-            <td>
-                <label for="street">улица</label>
-            </td>
-            <td>
-                <label for="houseNumber">дом</label>
-            </td>
-            <td>
-                <label for="houseBlock">корпус</label>
-            </td>
-            <td>
-                <label for="building">строение</label>
-            </td>
-            <td>
-                <label for="apartment">квартира</label>
-            </td>
-        </tr>
-    </table>
-    <p><b>КОММЕНТАРИЙ</b></p>
-    <table>
-        <tr>
-            <td align="right" valign="top">
-                комментарий к<br/> договору (не<br/> печатается на<br/> полисе)
-            </td>
-            <td>
-                <textarea rows="5" cols="100" name="text" id="contractComment"></textarea>
-            </td>
-        </tr>
-    </table>
-    <p><button>Сохранить</button><button onclick="returnToAllContractsView()">К списку договоров</button></p>
+	<table id="allContractsViewTableId" class="alignL">
+		<thead class="alignC">
+		<tr class="backgroundGrey">
+			<th>Серия-Номер</th>
+			<th>Дата заключения</th>
+			<th>Страхователь</th>
+			<th>Премия</th>
+			<th>Срок действия</th>
+		</tr>
+		</thead>
+	</table>
 </div>
 
-<!-- [Форма поиска клиента] - открыите по кнопке <Выбрать> в блоке СТРАХОВАТЕЛИ
-Группа полей / Поле	        Тип поля	Продавец:           Продавец: 	        Способ указания значения	Значение, указываемое при открытии страницы	Прочие особенности поведения
-                                        Доступность         Обязательность
-                                        для редактирования
-39--[Форма поиска клиента]
-40--Фамилия	                Строка	    Доступно	        Нет	                Ввод с клавиатуры
-41--Имя	                    Строка	    Доступно	        Нет	                Ввод с клавиатуры
-42--Отчество	            Строка	    Доступно	        Нет	                Ввод с клавиатуры
-43--ФИО	                    Строка	    Нет	                Нет	                Присваивается системой		Подставляются данные из клиента
-44--Дата рождения	        Строка	    Нет	                Нет	                Присваивается системой		Подставляются данные из клиента
-45--Паспортные данные	    Строка	    Нет	                Нет	                Присваивается системой		Подставляются данные из клиента
-46--Лупа	                Кнопка	    Доступно				                                            Поиск по указанным ФИО, если ничего не введено, то отображаться всех клиентов
-47--Выбрать/Новый/Закрыть	Кнопки	    Доступно
--->
-<dialog id="searchHolderDialog">
-    <table>
-        <tr>
-            <td>ФИО</td>
-            <td>
-                <input type="text" id="lastName">
-            </td>
-            <td>
-                <input type="text" id="firstName">
-            </td>
-            <td>
-                <input type="text" id="parentName">
-            </td>
-            <td><button>Поиск</button></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <label for="lastName">(фамилия)</label>
-            </td>
-            <td>
-                <label for="firstName">(имя)</label>
-            </td>
-            <td>
-                <label for="parentName">(отчество)</label>
-            </td>
-            <td></td>
-        </tr>
-    </table>
-    <div class="holdersView">
-        <table id="holdersDictTableId">
-            <thead>
+<div class="tFormContainer" id="singleContractEditForm">
+	<fieldset class="tFormContainer">
+		<legend>Расчет</legend>
+		<form id="calcForm">
+			<table class="tForm">
+				<tr>
+					<!-- Страховая сумма		Целое	Доступно	Обязательное	Ввод с клавиатуры -->
+					<td class="alignR"><label for="insuranceAmount">Страховая сумма</label></td>
+					<td class="alignL"><input type="number" name="insuranceAmount" id="insuranceAmount"></td>
+					<!-- Срок действия с 	Дата	Доступно	Обязательное	Ввод с клавиатуры, выбор из календаря		Текущая дата	"Срок действия полиса  с" должен быть >= текущей дате -->
+					<td class="alignR"><label for="insuranceStartDate">Срок действия с</label></td>
+					<td class="alignL"><input type="date" name="insuranceStartDate" id="insuranceStartDate"></td>
+					<!-- Срок действия по	Дата	Доступно	Обязательное	Ввод с клавиатуры, выбор из календаря		"""Срок действия полиса по"" должен быть > ""срок действия полиса с"".
+                    Срок действия договора не может быть больше года."-->
+					<td class="alignL"><label for="insuranceEndDate"> по </label><input type="date" name="insuranceEndDate" id="insuranceEndDate"></td>
+				</tr>
+				<tr>
+					<!-- Тип недвижимости	Список	Доступно	Обязательное	Выбор из списка				"Содержание списка: квартира, дом, комната" -->
+					<td class="alignR"><label for="realtyType">Тип недвижимости</label></td>
+					<td class="alignL">
+						<input list="realtyTypeList" name="realtyType" id="realtyType" >
+						<datalist id="realtyTypeList">
+							<option value="квартира" title="apartment">
+							<option value="дом" title="house">
+							<option value="комната" title="room">
+						</datalist>
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+				<!-- Год постройки		Строка	Доступно	Обязательное	Выбор из списка				Год должен быть четырехзначный и не больше текущего года. -->
+				<td class="alignR"><label for="realtyBuildYear">Год постройки</label></td>
+				<td class="alignL"><input type="text" name="realtyBuildYear" id="realtyBuildYear"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				</tr>
+				<!-- Площадь, кв.м.		Строка	Доступно	Обязательное	Ввод с клавиатуры			Должна быть возможность ввода не целых чисел, после запятой доступен только 1 знак -->
+				<td class="alignR"><label for="realtyArea">Площадь, кв.м.</label></td>
+				<td class="alignL"><input type="text" name="realtyArea" id="realtyArea"></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				</tr>
+				<td colspan="2"></td>
+				<td colspan="3" class="alignL"><input type="submit" value="Рассчитать"></td>
+				</tr>
+				<!-- Дата расчета		Дата	Нет			Обязательное	Присваивается системой		Дата выполнения расчета	Заполняется автоматически после выполнения расчета -->
+				<td class="alignR"><label for="insuranceCalcDate">Дата расчета</label></td>
+				<td class="alignL"><input type="date" name="insuranceCalcDate" id="insuranceCalcDate" readonly></td>
+				<!-- Премия				Строка	Доступно	Обязательное	Присваивается системой		Заполняется автоматически после выполнения расчета, не может быть отрицательной, округлять до 2 цифр после запятой -->
+				<td class="alignR"><label for="insurancePremium">Премия</label></td>
+				<td class="alignL"><input type="text" name="insurancePremium" id="insurancePremium"></td>
+				<td></td>
+				</tr>
+			</table>
+		</form>
+	</fieldset>
+    <form id="contractForm" class="tFormContainer">
+        <table class="tForm">
             <tr>
-                <th>ФИО</th>
-                <th>Дата рождения</th>
-                <th>Паспортные данные</th>
+                <td><!--14--  № договора	Целое	Доступно	Обязательное	Ввод с клавиатуры		Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться -->
+                    <!--условие <не должны повторяться> будем проверять на беке при сохранении. Либо нужен отдельный рест для проверки. Считаю вообще не целесообразным вводить вручную номер договора,
+                     возможно ошибка в требованиях, уточнить -->
+                    <label for="contractId">№ договора</label></td>
+                <td>
+                    <input type="text" id="contractId" name="contractId" pattern="[0-9]{6}" title="Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться">
+                </td>
+                <td>
+                    <!--15-- Дата заключения	Дата	Нет	Обязательное	Присваивается системой	Текущая дата	 -->
+                    <!--нужно будет засетить value, данные взять или из префила, либо системное время на фронте-->
+                    <label for="contractDate" required>Дата заключения</label>
+                </td>
+                <td>
+                    <input type="date" id="contractDate" name="contractDate" readonly><input type="text" class="notDisplayed" id="status" name="status" readonly>
+                </td>
             </tr>
-            </thead>
         </table>
-    </div>
-    <div class="emptyHoldersView">Нет подходящих записей</div>
-    <p><button id="openExistingHolderDialog">Выбрать</button>
-        <button id="openCreateNewHolderDialog">Новый</button>
-        <button id="closeSearchHolderDialog">Закрыть</button></p>
-</dialog>
+    </form>
+    <form id="clientForm" class="tFormContainer">
+        <table class="tForm">
+            <tr>
+                <td colspan="7" class="alignL"><b>СТРАХОВАТЕЛЬ</b></td>
+            </tr>
+            <tr>
+                <td class="alignL"><button id="openSearchHolderDialog">Выбрать</button></td>
+                <td class="alignR"><label for="holderFullName"> ФИО </label></td>
+                <td colspan="4" class="alignL"><input type="text" id="holderFullName" name="fullName"></td>
+                <td class="alignR"><button>Изменить</button></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="alignL"><label for="holderBirthDate">Дата рождения</label></td>
+                <td class="alignL"><input type="date" id="holderBirthDate" name="birthDate"></td>
+                <td class="alignR"><label for="holderPassportSeries"> Паспорт серия </label></td>
+                <td class="alignL"><input type="text" id="holderPassportSeries" name="passportSeries"></td>
+                <td colspan="2" class="alignR"><label for="holderPassportNumber"> номер </label><input type="text" name="passportNumber" id="holderPassportNumber"></td>
+            </tr>
+        </table>
+    </form>
 
-<dialog id="existingHolderDialog">
-    <table>
-        <tr>
-            <td>ФИО</td>
-            <td>
-                <input type="text" id="openHolderLastName">
-            </td>
-            <td>
-                <input type="text" id="openHolderFirstName">
-            </td>
-            <td>
-                <input type="text" id="openHolderParentName">
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <label for="openHolderLastName">(фамилия)</label>
-            </td>
-            <td>
-                <label for="openHolderFirstName">(имя)</label>
-            </td>
-            <td>
-                <label for="openHolderParentName">(отчество)</label>
-            </td>
-        </tr>
-    </table>
-    <p><label for="openHolderBirthDate">Дата рождения</label><input type="date" id="openHolderBirthDate"></p>
-    <p><label for="openHolderPassportSeries"> Паспорт серия </label><input type="text" id="openHolderPassportSeries">
-    <label for="openHolderPassportNumber"> номер </label><input type="text" id="openHolderPassportNumber"></p>
-    <p><button id="getAndCloseExistingHolderDialog">Сохранить</button><button id="closeExistingHolderDialog">Отменить</button></p>
-</dialog>
-
-<dialog id="createNewHolderDialog">
-    <table>
-        <tr>
-            <td>ФИО</td>
-            <td>
-                <input type="text" id="newHolderLastName">
-            </td>
-            <td>
-                <input type="text" id="newHolderFirstName">
-            </td>
-            <td>
-                <input type="text" id="newHolderParentName">
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <label for="newHolderLastName">(фамилия)</label>
-            </td>
-            <td>
-                <label for="newHolderFirstName">(имя)</label>
-            </td>
-            <td>
-                <label for="newHolderParentName">(отчество)</label>
-            </td>
-        </tr>
-    </table>
-    <p><label for="newHolderBirthDate">Дата рождения</label><input type="date" id="newHolderBirthDate"></p>
-    <p><label for="newHolderPassportSeries"> Паспорт серия </label><input type="text" id="newHolderPassportSeries">
-        <label for="newHolderPassportNumber"> номер </label><input type="text" id="newHolderPassportNumber"></p>
-    <p><button id="saveAndCloseExistingHolderDialog">Сохранить</button><button id="closeCreateNewHolderDialog">Отменить</button></p>
-</dialog>
+    <form id="realtyLocationForm" class="tFormContainer">
+        <table class="tForm">
+            <tr>
+                <td colspan="4">Адрес недвижимости</b></td>
+            </tr>
+            <tr>
+                <td>
+                    <input list="countryList" name="country" id="country" >
+                    <datalist id="countryList">
+                        <option value="Россия">
+                        <option value="другое">
+                    </datalist>
+                </td>
+                <td>
+                    <input type="text" id="postIndex" name="postIndex">
+                </td>
+                <td>
+                    <input type="text" id="federalRegion" name="federalRegion">
+                </td>
+                <td>
+                    <input type="text" id="district" name="district">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="country">государство</label>
+                </td>
+                <td>
+                    <label for="postIndex">индекс</label>
+                </td>
+                <td>
+                    <label for="federalRegion">республика, край, область</label>
+                </td>
+                <td>
+                    <label for="district">район</label>
+                </td>
+            </tr>
+        </table>
+        <table class="tForm">
+            <tr>
+                <td>
+                    <input type="text" id="place" name="place">
+                </td>
+                <td>
+                    <input type="text" id="street" name="street">
+                </td>
+                <td>
+                    <input type="text" id="houseNumber" name="houseNumber">
+                </td>
+                <td>
+                    <input type="text" id="houseBlock" name="houseBlock">
+                </td>
+                <td>
+                    <input type="text" id="building" name="building">
+                </td>
+                <td>
+                    <input type="text" id="apartment" name="apartment">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="place">населенный пункт</label>
+                </td>
+                <td>
+                    <label for="street">улица</label>
+                </td>
+                <td>
+                    <label for="houseNumber">дом</label>
+                </td>
+                <td>
+                    <label for="houseBlock">корпус</label>
+                </td>
+                <td>
+                    <label for="building">строение</label>
+                </td>
+                <td>
+                    <label for="apartment">квартира</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">КОММЕНТАРИЙ</td>
+            </tr>
+            <tr>
+                <td align="right" valign="top" id="contractCommentDescription">
+                    комментарий к<br/> договору (не<br/> печатается на<br/> полисе)
+                </td>
+                <td colspan="5">
+                    <textarea name="text" class="contractCommentArea" id="comment"  name="comment"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="6">
+                    <input type="button" value="Сохранить" onclick="saveContract()"/>
+                    <input type="button" value="К списку договоров" onclick="returnToAllContractsView()"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
 
 <script>
-    (function (){
-        getAllContracts(); // пагинация нужна ? пока обойдемся без нее
-    }());
+	(function (){
+		getAndFillAllContractsView();
+	}());
 
-    function getAllContracts()
-    {
-        $.ajax({
-            type: "GET",
-            contentType: "application/json",
-            url: "insurance/contract/",
-            cache: false,
-            success: function(allContracts){
-                $("#allContractsTableId > tbody").remove(); //почистить таблицу
-                //заполнить полученными данными
-                $('#allContractsTableId').append(
-                    `<tbody>${allContracts.map(n =>
-                        `<tr>
+	function getAndFillAllContractsView() {
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: "insurance/view/",
+			cache: false,
+			success: function(contractViewList){
+				fillContractViewTable(contractViewList);
+			}
+		});
+	}
+
+	var trIdPrefix = "docId_";
+	function fillContractViewTable(contractViewList) {
+		$("#allContractsViewTableId > tbody").remove();
+		$('#allContractsViewTableId').append(
+				`<tbody>${contractViewList.map(n =>
+						`<tr id="${trIdPrefix}${n.contractId}">
                           <td>${n.contractId}</td>
                           <td>${n.contractDate}</td>
                           <td>${n.policyHolder}</td>
@@ -311,86 +303,175 @@
                           <td>${n.contractDuration}</td>
                         </tr>`).join('')}
                       </tbody>`
-                                    );
-            }
-        });
+		);
+	}
+
+	function openPrefilledContract() {
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: "insurance/contract/prefill",
+			cache: false,
+			success: function(prefilledContractModel){
+				openContractEditForm(prefilledContractModel);
+				currentSelectedContract = null;
+			}
+		});
+	}
+
+	var currentSelectedContract = null;
+	document.getElementById('allContractsViewTableId').addEventListener('click', setCurrentSelectedContract);
+	function setCurrentSelectedContract(e) {
+		let trId = e.target.parentNode.getAttribute("id");
+		currentSelectedContract = trId.substring(trIdPrefix.length);
+	}
+	document.getElementById('allContractsViewTableId').addEventListener('dblclick', openContractByDblClick);
+	function openContractByDblClick(e) {
+        let trId = e.target.parentNode.getAttribute("id");
+        currentSelectedContract = trId.substring(trIdPrefix.length);
+        openContractById(currentSelectedContract);
     }
 
-    function getPrefilledContract()
-    {
-        console.log('По этой кнопке открываем модалку и подгружаем GET /insurance/contracts/{id} - только id надо выбрать из таблицы, если null - то дизейблить кнопку');
+	function openContractById(id) {
+	    if(id === null) {
+	        return;
+        }
+		$.ajax({
+			type: "GET",
+			contentType: "application/json",
+			url: "insurance/contract/" + id,
+			cache: false,
+			success: function(contractModel){
+				openContractEditForm(contractModel);
+			}
+		});
+	}
+
+	function openContractEditForm(contractModel) {
+		$('#singleContractEditForm').show();
+		$('#allContractsView').hide();
+		fillContractForm(contractModel);
+	}
+
+	/* Заполнение формы значениями из модели */
+	function fillContractForm(contractModel) {
+        document.getElementById('contractId').value = contractModel['contractId'];
+        document.getElementById('contractDate').value = contractModel['contractDate'];
+        document.getElementById('status').value = contractModel['status'];
+		fillCalcForm(contractModel.calcInfo);
+		fillClientForm(contractModel.holderInfo);
+        fillRealtyLocationForm(contractModel.realtyLocation);//realtyLocationForm
+	}
+
+    /*Сохранение договора*/
+    function saveContract() {
+        let contractForm = document.getElementById('contractForm');
+        let contractModel = fillContractModel(contractForm, {});
+        if (contractModel.status === "CREATED") {
+            updateContractInServer(contractModel, contractForm);
+        }
+        if (contractModel.status === "NEW") {
+            createNewContractInServer(contractModel, contractForm);
+        }
+    }
+
+    /*Создание на сервере нового договора*/
+    function createNewContractInServer(contractModel, contractForm) {
         $.ajax({
-            type: "GET",
+            type: "POST",
             contentType: "application/json",
-            url: "insurance/contract/prefill",
+            url: "insurance/contract",
+            data: JSON.stringify(contractModel),
             cache: false,
-            success: function(prefilledContract){
-                //console.log(prefilledContract);
-                openContractEditForm(prefilledContract);
+            success: function(resContractModel){
+                fillContractForm(resContractModel, contractForm);
             }
         });
     }
 
-    function getContractById(id)
-    {
-        console.log('По этой кнопке открываем модалку и дергаем GET /insurance/contracts/prefill');
+    /*Обновлсение на сервере существующего договра*/
+    function updateContractInServer(contractModel, contractForm) {
         $.ajax({
-            type: "GET",
+            type: "PUT",
             contentType: "application/json",
-            url: "insurance/contract/" + id,
+            url: "insurance/contract/" + contractModel.contractId,
+            data: JSON.stringify(contractModel),
             cache: false,
-            success: function(contract){
-                //console.log(contract);
-                openContractEditForm(contract);
+            success: function(resContractModel){
+                fillContractForm(resContractModel, contractForm);
             }
         });
     }
 
-    function openContractEditForm(contract)
-    {
-        $('.singleContractEditForm').show();
-        $('.allContractsView').hide();
-        console.log(contract); //TO DO: заполнить форму
+	/* Заполнение модели значениями из формы */
+	function fillContractModel(form, model) {
+        new FormData(form).forEach((value, key) => model[key] = value);
+        let calcForm = document.getElementById('calcForm');
+        model.calcInfo = fillCalcModel(calcForm, {});
+        let clientForm = document.getElementById('clientForm');
+        model.holderInfo = fillModel(clientForm, {});
+        let realtyLocationForm = document.getElementById('realtyLocationForm');
+        model.realtyLocation = fillModel(realtyLocationForm, {});
+        return model;
+	}
+
+    function fillModel(form, model) {
+        new FormData(form).forEach((value, key) => model[key] = value);
+        return model;
     }
 
-    function returnToAllContractsView()
-    {
-        $('.singleContractEditForm').hide();    //скрыть блок редактирования (вернее все что class = "singleContractEditForm")
-        $('.allContractsView').show();          //отобразить блок просмотра списка все договоров (вернее все что class = "allContractsView")
+	function returnToAllContractsView() {
+		$('#singleContractEditForm').hide();
+		$('#allContractsView').show();
+	}
+
+	/*Работа с формой расчета страховой премии*/
+	document.getElementById('calcForm').addEventListener('submit', submitCalcForm);
+	function submitCalcForm(event) {
+		event.preventDefault();
+		let calcForm = event.target;
+		let reqCalcModel = {};
+		fillCalcModel(calcForm, reqCalcModel);
+		$.ajax({
+			type: "POST",
+			contentType: "application/json",
+			url: "insurance/calc",
+			data: JSON.stringify(reqCalcModel),
+			cache: false,
+			success: function(resCalcModel){
+				fillCalcForm(resCalcModel, calcForm);
+			}
+		});
+	}
+
+	/* Заполнение формы значениями из модели */
+	function fillCalcForm(model) {
+		let formElements = document.getElementById('calcForm').elements;
+		for (key in model) {
+			formElements[key].setAttribute("value", model[key]);
+		}
+	}
+
+	/* Заполнение модели значениями из формы */
+	function fillCalcModel(form, model) {
+		new FormData(form).forEach((value, key) => model[key] = value);
+		return model;
+	}
+
+	function fillClientForm(model) {
+		let formElements = document.getElementById('clientForm').elements;
+		for (key in model) {
+			formElements[key].setAttribute("value", model[key]);
+		}
+	}
+
+    function fillRealtyLocationForm(model) {
+        let formElements = document.getElementById('realtyLocationForm').elements;
+        for (key in model) {
+            formElements[key].setAttribute("value", model[key]);
+        }
     }
 
-    var searchHoldersDialog = document.querySelector('#searchHolderDialog');
-    document.querySelector('#openSearchHolderDialog').onclick = function() {
-        searchHoldersDialog.showModal();
-    }
-    document.querySelector('#closeSearchHolderDialog').onclick = function() {
-        searchHoldersDialog.close();
-    }
-
-    var existingHolderDialog = document.querySelector('#existingHolderDialog');
-    document.querySelector('#openExistingHolderDialog').onclick = function() {
-        existingHolderDialog.showModal();
-    }
-    document.querySelector('#closeExistingHolderDialog').onclick = function() {
-        existingHolderDialog.close();
-    }
-    document.querySelector('#getAndCloseExistingHolderDialog').onclick = function() {
-        //передать в модель договора
-        existingHolderDialog.close();
-    }
-
-    var createNewHolderDialog = document.querySelector('#createNewHolderDialog');
-    document.querySelector('#openCreateNewHolderDialog').onclick = function() {
-        createNewHolderDialog.showModal();
-    }
-    document.querySelector('#closeCreateNewHolderDialog').onclick = function() {
-        createNewHolderDialog.close();
-    }
-    document.querySelector('#saveAndCloseExistingHolderDialog').onclick = function() {
-        //сохранить на сервере
-        //передать в модель договора
-        createNewHolderDialog.close();
-    }
 </script>
 </body>
 </html>
