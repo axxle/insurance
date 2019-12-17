@@ -1,41 +1,58 @@
 package ru.axxle.insurance.web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.axxle.insurance.InsuranceCalc;
+import ru.axxle.insurance.service.InsuranceCalcService;
 import ru.axxle.insurance.web.WebInsuranceCalc;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class WebInsuranceCalcServiceImpl implements WebInsuranceCalcService {
 
-    private String k1;
-    private String k2;
-
-    public WebInsuranceCalcServiceImpl(String k1, String k2) {
-        this.k1 = k1;
-        this.k2 = k2;
-    }
+    @Autowired
+    private InsuranceCalcService calcService;
 
     public WebInsuranceCalc calc(WebInsuranceCalc webModel) {
-        Date date = new Date();
-        webModel.setInsuranceCalcDate(new SimpleDateFormat("yyyy-MM-dd").format(date));
-        webModel.setInsurancePremium("" + k1 + k2);
+        InsuranceCalc model = calcService.calc(convertToModel(webModel));
+        return convertToWebModel(model);
+    }
+
+    private static InsuranceCalc convertToModel (WebInsuranceCalc webModel) {
+        InsuranceCalc model = new InsuranceCalc();
+        model.setInsuranceAmount(webModel.getInsuranceAmount());
+        model.setRealtyType(webModel.getRealtyType());
+        model.setRealtyBuildYear(webModel.getRealtyBuildYear());
+        model.setRealtyArea(webModel.getRealtyArea());
+        model.setInsuranceStartDate(webModel.getInsuranceStartDate());
+        model.setInsuranceEndDate(webModel.getInsuranceEndDate());
+        model.setInsuranceCalcDate(webModel.getInsuranceCalcDate());
+        model.setInsurancePremium(webModel.getInsurancePremium());
+        return model;
+    }
+
+    private static WebInsuranceCalc convertToWebModel (InsuranceCalc model) {
+        WebInsuranceCalc webModel = new WebInsuranceCalc();
+        webModel.setInsuranceAmount(model.getInsuranceAmount());
+        webModel.setRealtyType(model.getRealtyType());
+        webModel.setRealtyBuildYear(model.getRealtyBuildYear());
+        webModel.setRealtyArea(model.getRealtyArea());
+        webModel.setInsuranceStartDate(model.getInsuranceStartDate());
+        webModel.setInsuranceEndDate(model.getInsuranceEndDate());
+        webModel.setInsuranceCalcDate(model.getInsuranceCalcDate());
+        webModel.setInsurancePremium(model.getInsurancePremium());
         return webModel;
     }
 
-    public String getK1() {
-        return k1;
+    public WebInsuranceCalcServiceImpl() {
     }
 
-    public void setK1(String k1) {
-        this.k1 = k1;
+    public WebInsuranceCalcServiceImpl(InsuranceCalcService calcService) {
+        this.calcService = calcService;
     }
 
-    public String getK2() {
-        return k2;
+    public InsuranceCalcService getCalcService() {
+        return calcService;
     }
 
-    public void setK2(String k2) {
-        this.k2 = k2;
+    public void setCalcService(InsuranceCalcService calcService) {
+        this.calcService = calcService;
     }
 }
