@@ -30,10 +30,10 @@ dependencies {
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.10.0'
 	compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.10.0'
 	compile group: 'org.springframework', name: 'spring-context', version: '4.3.9.RELEASE'
-	testCompile("junit:junit")
 	compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.2.Final'
     compile group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '6.0.2.Final'
+    testCompile 'junit:junit:4.12'
 }
 
 task stage() {
