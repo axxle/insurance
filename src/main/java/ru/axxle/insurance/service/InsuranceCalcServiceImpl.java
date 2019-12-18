@@ -3,6 +3,7 @@ package ru.axxle.insurance.service;
 import ru.axxle.insurance.InsuranceCalc;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -54,7 +55,7 @@ public class InsuranceCalcServiceImpl implements InsuranceCalcService {
         return premium;
     }
 
-    private BigDecimal takeRealtyTypeFactor(String realtyType){
+    public BigDecimal takeRealtyTypeFactor(String realtyType){
         if ("квартира".equals(realtyType)) {
             return new BigDecimal(this.factorRealtyTypeApartment);
         }
@@ -67,12 +68,55 @@ public class InsuranceCalcServiceImpl implements InsuranceCalcService {
         return null;
     }
 
-    private BigDecimal takeRealtyBuildYearFactor(String s){
-        return null;
+    public BigDecimal takeRealtyBuildYearFactor(int buildYear){
+        BigDecimal result = null;
+        if (buildYear < 2000) {
+            result = new BigDecimal(this.factorRealtyBuildYearLessThan2000);
+        }
+        if (buildYear >= 2000 && buildYear <= 2014) {
+            result = new BigDecimal(this.factorRealtyBuildYearBetween2000and2014);
+        }
+        if (buildYear >= 2015) {
+            result = new BigDecimal(this.factorRealtyBuildYear2015AndMore);
+        }
+        return result;
     }
 
-    private BigDecimal takeRealtyAreaFactor(String s){
-        return null;
+    public BigDecimal takeRealtyAreaFactor(double area) {
+        //можно не делать округление, если: в БД тип будет подходящий + валидация входящих
+        System.out.print(area);
+        area = new BigDecimal(String.valueOf(area)).setScale(1, RoundingMode.HALF_UP).doubleValue();
+        System.out.println(" --> " + area);
+        /*
+        43.1 --> 43.1
+        43.1 --> 43.1
+        50.0 --> 50.0
+        50.0 --> 50.0
+        51.0 --> 51.0
+        100.0 --> 100.0
+        100.0 --> 100.0
+        99.9 --> 99.9
+        99.9999999999 --> 100.0
+        100.0000001 --> 100.0
+        100.049999 --> 100.0
+        100.05 --> 100.1
+        100.050001 --> 100.1
+        100.0999999 --> 100.1
+        100.1 --> 100.1
+        180.0 --> 180.0
+        */
+
+        BigDecimal result = null;
+        if (area < 50.0) {
+            result = new BigDecimal(this.factorRealtyAreaLessThan50);
+        }
+        if (area >= 50.0 && area <= 100.0) {
+            result = new BigDecimal(this.factorRealtyAreaBetween50and100);
+        }
+        if (area > 100.0) {
+            result = new BigDecimal(this.factorRealtyAreaMore100);
+        }
+        return result;
     }
 
     public String getFactorRealtyTypeApartment() {

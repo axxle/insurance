@@ -10,4 +10,6 @@ public interface WebInsuranceContractService {
 
     WebInsuranceContract getById(String id);
 
+    WebInsuranceContract update(WebInsuranceContract webInsuranceContract);
+
 }

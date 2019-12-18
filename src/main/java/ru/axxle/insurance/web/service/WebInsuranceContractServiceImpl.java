@@ -5,14 +5,10 @@ import ru.axxle.insurance.web.WebInsuranceClient;
 import ru.axxle.insurance.web.WebInsuranceContract;
 import ru.axxle.insurance.web.WebRealtyLocation;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class WebInsuranceContractServiceImpl implements WebInsuranceContractService {
-
-
 
     @Override
     public WebInsuranceContract getPrefilled() {
@@ -27,6 +23,10 @@ public class WebInsuranceContractServiceImpl implements WebInsuranceContractServ
         return webInsuranceContract;
     }
 
+    @Override
+    public WebInsuranceContract update(WebInsuranceContract webInsuranceContract) {
+        return webInsuranceContract;
+    }
 
     ////////////////////////////////////////////
     private Map<String, WebInsuranceContract> map = new HashMap<>();
@@ -37,8 +37,8 @@ public class WebInsuranceContractServiceImpl implements WebInsuranceContractServ
                 new WebInsuranceCalc(
                         "1200000",
                         "квартира",
-                        "1955",
-                        "43.5",
+                        1955,
+                        43.5,
                         "2019-12-16",
                         "2020-12-15",
                         "2019-12-16",
@@ -74,8 +74,8 @@ public class WebInsuranceContractServiceImpl implements WebInsuranceContractServ
                 new WebInsuranceCalc(
                         "130000",
                         "дом",
-                        "1995",
-                        "112.5",
+                        1995,
+                        112.5,
                         "2019-12-16",
                         "2020-12-15",
                         "2019-12-16",
@@ -109,7 +109,7 @@ public class WebInsuranceContractServiceImpl implements WebInsuranceContractServ
         map.put(contract1.getContractId(), contract1);
         map.put(contract2.getContractId(), contract2);
     }
-    ////////////////////////////////////////////
+    //////////////////
 
 
 }

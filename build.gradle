@@ -34,20 +34,22 @@ dependencies {
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.2.Final'
     compile group: 'org.hibernate.validator', name: 'hibernate-validator-annotation-processor', version: '6.0.2.Final'
     testCompile 'junit:junit:4.12'
-    //testCompile group: 'org.springframework', name: 'spring-test', version: '5.2.2.RELEASE'
     testCompile group: 'org.springframework', name: 'spring-test', version: '4.3.9.RELEASE'
-
 }
 
 task stage() {
     dependsOn clean, war
 }
 
+//В src/main/webapp/WEB-INF/applicationContext.xml есть строка:
+// <context:property-placeholder location="WEB-INF/META-INF/app.properties" />
+//Сам конфиг прописали для тестов явно так: @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/applicationContext.xml"})
+//для резолва <context:property-placeholder location="WEB-INF/META-INF/app.properties" /> нужно продублировать файл app.properties в src/test/resources/
+//а после тестов убрать за собой (чтобы не путаться с файлами по запарке, например)
 task copyForTestCustom (type: Copy) {
     from file("src/main/webapp/WEB-INF/META-INF/app.properties")
     into "src/test/resources/WEB-INF/META-INF/"
 }
-
 task clearAfterTestCustom (type: Delete) {
     delete("src/test/resources/WEB-INF/META-INF/app.properties")
 }

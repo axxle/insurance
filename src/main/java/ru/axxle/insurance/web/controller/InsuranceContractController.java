@@ -60,7 +60,6 @@ public class InsuranceContractController {
 	)
 	public WebInsuranceContract update(@PathVariable(ID) String id,
 			@RequestBody WebInsuranceContract entity) {
-		//webInsuranceContractService.update(entity);
-		return entity;
+		return webInsuranceContractService.update(entity);
 	}
 }

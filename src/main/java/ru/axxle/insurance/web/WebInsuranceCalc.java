@@ -3,11 +3,15 @@ package ru.axxle.insurance.web;
 import javax.validation.constraints.Pattern;
 
 public class WebInsuranceCalc {
-    @Pattern (regexp = "^[1-9]{1}[0-9]{0,}$", message = "Можно ввести только целое число")
+
+    public static final String insuranceAmountCheckPattern = "^[1-9]{1}[0-9]{0,}$";
+    public static final String insuranceAmountCheckMessage = "Можно ввести только целое число";
+    @Pattern (regexp = insuranceAmountCheckPattern, message = insuranceAmountCheckMessage)
     private String insuranceAmount;
+
     private String realtyType;
-    private String realtyBuildYear;
-    private String realtyArea;
+    private int realtyBuildYear;
+    private double realtyArea;
     private String insuranceStartDate;
     private String insuranceEndDate;
     private String insuranceCalcDate;
@@ -15,7 +19,7 @@ public class WebInsuranceCalc {
 
     public WebInsuranceCalc() {}
 
-    public WebInsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, String realtyArea, String insuranceStartDate, String insuranceEndDate, String insuranceCalcDate, String insurancePremium) {
+    public WebInsuranceCalc(String insuranceAmount, String realtyType, int realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate, String insuranceCalcDate, String insurancePremium) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -26,7 +30,7 @@ public class WebInsuranceCalc {
         this.insurancePremium = insurancePremium;
     }
 
-    public WebInsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, String realtyArea, String insuranceStartDate, String insuranceEndDate) {
+    public WebInsuranceCalc(String insuranceAmount, String realtyType, int realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -53,19 +57,19 @@ public class WebInsuranceCalc {
         this.realtyType = realtyType;
     }
 
-    public String getRealtyBuildYear() {
+    public int getRealtyBuildYear() {
         return realtyBuildYear;
     }
 
-    public void setRealtyBuildYear(String realtyBuildYear) {
+    public void setRealtyBuildYear(int realtyBuildYear) {
         this.realtyBuildYear = realtyBuildYear;
     }
 
-    public String getRealtyArea() {
+    public double getRealtyArea() {
         return realtyArea;
     }
 
-    public void setRealtyArea(String realtyArea) {
+    public void setRealtyArea(double realtyArea) {
         this.realtyArea = realtyArea;
     }
 
