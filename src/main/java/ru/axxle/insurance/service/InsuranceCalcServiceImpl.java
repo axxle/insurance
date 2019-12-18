@@ -5,6 +5,10 @@ import ru.axxle.insurance.InsuranceCalc;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class InsuranceCalcServiceImpl implements InsuranceCalcService {
@@ -35,23 +39,40 @@ public class InsuranceCalcServiceImpl implements InsuranceCalcService {
 
     @Override
     public InsuranceCalc calc(InsuranceCalc insuranceCalc) {
-        //определить коэффициенты
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  //в модели поменять типы для этих полей
+        LocalDate startDate = LocalDate.parse(insuranceCalc.getInsuranceStartDate(), formatter);
+        LocalDate endDate = LocalDate.parse(insuranceCalc.getInsuranceEndDate(), formatter);
+
+        BigDecimal amount = new BigDecimal(insuranceCalc.getInsuranceAmount()); //перевести в int
+        int d = countNumberOfDays(startDate, endDate);
+        BigDecimal days = new BigDecimal(d);
         BigDecimal factorRealtyType = takeRealtyTypeFactor(insuranceCalc.getRealtyType());
         BigDecimal factorRealtyBuildYear = takeRealtyBuildYearFactor(insuranceCalc.getRealtyBuildYear());
         BigDecimal factorRealtyArea = takeRealtyAreaFactor(insuranceCalc.getRealtyArea());
-        //рассчитать
-        BigDecimal premium = calc(factorRealtyType, factorRealtyBuildYear, factorRealtyArea);
-        insuranceCalc.setInsurancePremium(premium.toString());
+        BigDecimal premium = calc(amount,
+                days,
+                factorRealtyType,
+                factorRealtyBuildYear,
+                factorRealtyArea
+        );
+        insuranceCalc.setInsurancePremium(premium.setScale(2, RoundingMode.HALF_UP).toPlainString());
         insuranceCalc.setInsuranceCalcDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
         return insuranceCalc;
     }
 
-    public BigDecimal calc(BigDecimal factorRealtyType, BigDecimal factorRealtyBuildYear, BigDecimal factorRealtyArea) {
-        BigDecimal premium;
-        //тут будут сами расчеты:
-        premium = new BigDecimal("1000.12");
+    public int countNumberOfDays(LocalDate startDate, LocalDate endDate) {
+        return (int) ChronoUnit.DAYS.between(startDate, endDate);
+    }
+
+    public BigDecimal calc(BigDecimal amount,
+                           BigDecimal days,
+                           BigDecimal factorRealtyType,
+                           BigDecimal factorRealtyBuildYear,
+                           BigDecimal factorRealtyArea) {
         //Страховая премия = (Страховая сумма / кол-во дней) * Коэф.ТН * Коэф.ГП * Коэф.Пл
         //insurancePremium = (insurancAmount / insuranceDays) * factorRealtyType * factorRealtyBuildYear * factorRealtyArea;
+        BigDecimal premium = amount.divide(days, RoundingMode.HALF_UP);
+        premium = premium.multiply(factorRealtyType).multiply(factorRealtyBuildYear).multiply(factorRealtyArea);
         return premium;
     }
 

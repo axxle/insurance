@@ -20,19 +20,19 @@ public class InsuranceCalcServiceImplTest {
     @Test
     public void calcTest() throws Exception {
         InsuranceCalc calcModel = new InsuranceCalc();
-        calcModel.setInsuranceAmount("");
-        calcModel.setRealtyType("");
-        calcModel.setRealtyBuildYear(1955);
-        calcModel.setRealtyArea(43.1);
-        calcModel.setInsuranceStartDate("");
-        calcModel.setInsuranceEndDate("");
+        //Страховая премия = (Страховая сумма / кол-во дней) * Коэф.ТН * Коэф.ГП * Коэф.Пл
+        //insurancePremium = (insurancAmount / insuranceDays) * factorRealtyType * factorRealtyBuildYear * factorRealtyArea;
+        calcModel.setInsuranceAmount("366000");
+        calcModel.setRealtyType("дом");
+        calcModel.setRealtyBuildYear(2015);
+        calcModel.setRealtyArea(200.1);
+        calcModel.setInsuranceStartDate("2019-12-18");
+        calcModel.setInsuranceEndDate("2020-12-18");
         calcModel.setInsuranceCalcDate("");
-        calcModel.setInsurancePremium("1000.12");
-        Assert.assertEquals("1000.12", calcModel.getInsurancePremium());
         Assert.assertNotNull(calcService);
-        InsuranceCalc calcedModel = calcService.calc(calcModel);
-        Assert.assertNotNull(calcedModel);
-        Assert.assertEquals("1000.12", calcModel.getInsurancePremium());
+        calcModel = calcService.calc(calcModel);
+        Assert.assertNotNull(calcModel);
+        Assert.assertEquals("6000.00", calcModel.getInsurancePremium());
     }
 
     @Test
