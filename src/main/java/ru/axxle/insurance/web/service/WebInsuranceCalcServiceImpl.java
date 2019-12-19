@@ -20,7 +20,7 @@ public class WebInsuranceCalcServiceImpl implements WebInsuranceCalcService {
         model.setInsuranceAmount(webModel.getInsuranceAmount());
         model.setRealtyType(webModel.getRealtyType());
         model.setRealtyBuildYear(webModel.getRealtyBuildYear());
-        model.setRealtyArea(webModel.getRealtyArea());
+        model.setRealtyArea(Double.parseDouble(webModel.getRealtyArea()));
         model.setInsuranceStartDate(webModel.getInsuranceStartDate());
         model.setInsuranceEndDate(webModel.getInsuranceEndDate());
         model.setInsuranceCalcDate(webModel.getInsuranceCalcDate());
@@ -33,7 +33,7 @@ public class WebInsuranceCalcServiceImpl implements WebInsuranceCalcService {
         webModel.setInsuranceAmount(model.getInsuranceAmount());
         webModel.setRealtyType(model.getRealtyType());
         webModel.setRealtyBuildYear(model.getRealtyBuildYear());
-        webModel.setRealtyArea(model.getRealtyArea());
+        webModel.setRealtyArea(model.getRealtyArea()+"");
         webModel.setInsuranceStartDate(model.getInsuranceStartDate());
         webModel.setInsuranceEndDate(model.getInsuranceEndDate());
         webModel.setInsuranceCalcDate(model.getInsuranceCalcDate());

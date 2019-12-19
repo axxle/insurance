@@ -47,7 +47,7 @@ public class InsuranceCalcServiceImpl implements InsuranceCalcService {
         int d = countNumberOfDays(startDate, endDate);
         BigDecimal days = new BigDecimal(d);
         BigDecimal factorRealtyType = takeRealtyTypeFactor(insuranceCalc.getRealtyType());
-        BigDecimal factorRealtyBuildYear = takeRealtyBuildYearFactor(insuranceCalc.getRealtyBuildYear());
+        BigDecimal factorRealtyBuildYear = takeRealtyBuildYearFactor(Integer.parseInt(insuranceCalc.getRealtyBuildYear()));
         BigDecimal factorRealtyArea = takeRealtyAreaFactor(insuranceCalc.getRealtyArea());
         BigDecimal premium = calc(amount,
                 days,

@@ -315,6 +315,17 @@
 			success: function(prefilledContractModel){
 				openContractEditForm(prefilledContractModel);
 				currentSelectedContract = null;
+                //тестовые данные для проверки формы расчета премии
+                fillCalcForm({
+                    insuranceAmount: "366000",
+                    realtyType: "дом",
+                    realtyBuildYear: "2015",
+                    realtyArea: "102.0",
+                    insuranceStartDate: "2019-12-12",
+                    insuranceEndDate: "2020-12-12",
+                    insuranceCalcDate: "",
+                    insurancePremium: ""
+                });
 			}
 		});
 	}

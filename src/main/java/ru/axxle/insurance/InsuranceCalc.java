@@ -6,7 +6,7 @@ public class InsuranceCalc {
     @Pattern (regexp = "^[1-9]{1}[0-9]{0,}$", message = "Можно ввести только целое число")
     private String insuranceAmount;
     private String realtyType;
-    private int realtyBuildYear;
+    private String realtyBuildYear;
     private double realtyArea;
     private String insuranceStartDate;
     private String insuranceEndDate;
@@ -15,7 +15,7 @@ public class InsuranceCalc {
 
     public InsuranceCalc() {}
 
-    public InsuranceCalc(String insuranceAmount, String realtyType, int realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate, String insuranceCalcDate, String insurancePremium) {
+    public InsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate, String insuranceCalcDate, String insurancePremium) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -26,7 +26,7 @@ public class InsuranceCalc {
         this.insurancePremium = insurancePremium;
     }
 
-    public InsuranceCalc(String insuranceAmount, String realtyType, int realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate) {
+    public InsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -51,11 +51,11 @@ public class InsuranceCalc {
         this.realtyType = realtyType;
     }
 
-    public int getRealtyBuildYear() {
+    public String getRealtyBuildYear() {
         return realtyBuildYear;
     }
 
-    public void setRealtyBuildYear(int realtyBuildYear) {
+    public void setRealtyBuildYear(String realtyBuildYear) {
         this.realtyBuildYear = realtyBuildYear;
     }
 

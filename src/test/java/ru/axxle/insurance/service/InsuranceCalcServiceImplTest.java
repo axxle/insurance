@@ -24,7 +24,7 @@ public class InsuranceCalcServiceImplTest {
         //insurancePremium = (insurancAmount / insuranceDays) * factorRealtyType * factorRealtyBuildYear * factorRealtyArea;
         calcModel.setInsuranceAmount("366000");
         calcModel.setRealtyType("дом");
-        calcModel.setRealtyBuildYear(2015);
+        calcModel.setRealtyBuildYear("2015");
         calcModel.setRealtyArea(200.1);
         calcModel.setInsuranceStartDate("2019-12-18");
         calcModel.setInsuranceEndDate("2020-12-18");

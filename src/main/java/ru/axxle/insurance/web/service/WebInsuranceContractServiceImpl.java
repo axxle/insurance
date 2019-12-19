@@ -37,8 +37,8 @@ public class WebInsuranceContractServiceImpl implements WebInsuranceContractServ
                 new WebInsuranceCalc(
                         "1200000",
                         "квартира",
-                        1955,
-                        43.5,
+                        "1955",
+                        "43.5",
                         "2019-12-16",
                         "2020-12-15",
                         "2019-12-16",
@@ -74,8 +74,8 @@ public class WebInsuranceContractServiceImpl implements WebInsuranceContractServ
                 new WebInsuranceCalc(
                         "130000",
                         "дом",
-                        1995,
-                        112.5,
+                        "1995",
+                        "112.5",
                         "2019-12-16",
                         "2020-12-15",
                         "2019-12-16",
