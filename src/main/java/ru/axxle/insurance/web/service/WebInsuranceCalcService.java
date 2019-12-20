@@ -1,9 +1,10 @@
 package ru.axxle.insurance.web.service;
 
 import ru.axxle.insurance.web.WebInsuranceCalc;
+import ru.axxle.insurance.web.WebInsuranceCalcFull;
 
 public interface WebInsuranceCalcService {
 
-    WebInsuranceCalc calc (WebInsuranceCalc webModel);
+    WebInsuranceCalcFull calc (WebInsuranceCalc webModel);
 
 }

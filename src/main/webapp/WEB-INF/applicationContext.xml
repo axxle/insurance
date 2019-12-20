@@ -7,8 +7,20 @@
     <context:property-placeholder location="WEB-INF/META-INF/app.properties" />
 
     <!-- DAO -->
+    <bean id="insuranceContractDao"  class="ru.axxle.insurance.dao.InsuranceContractDaoImpl" />
 
     <!-- Service -->
+    <bean id="insuranceContractViewService"  class="ru.axxle.insurance.service.InsuranceContractServiceImpl" />
+
+    <bean id="orikaMapperFactoryCreator"  class="ru.axxle.insurance.web.mapper.MapperFactoryCreator" init-method="getInstance" />
+    <bean id="mapperFactory"  class="ma.glasnost.orika.impl.DefaultMapperFactory"
+          factory-bean="orikaMapperFactoryCreator"
+          factory-method="getInstance" />
+    <bean id="mapperFacade"  class="ru.axxle.insurance.web.mapper.MapperFacadeImpl" >
+       <constructor-arg type = "ma.glasnost.orika.MapperFactory" name="mapperFactory" ref="mapperFactory" />
+    </bean>
+
+
     <bean id="webInsuranceContractViewService"  class="ru.axxle.insurance.web.service.WebInsuranceContractViewServiceImpl" />
     <bean id="webInsuranceContractService"  class="ru.axxle.insurance.web.service.WebInsuranceContractServiceImpl" />
     <bean id="webInsuranceCalcService"  class="ru.axxle.insurance.web.service.WebInsuranceCalcServiceImpl" />

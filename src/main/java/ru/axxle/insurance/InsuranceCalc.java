@@ -1,6 +1,7 @@
 package ru.axxle.insurance;
 
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 public class InsuranceCalc {
     @Pattern (regexp = "^[1-9]{1}[0-9]{0,}$", message = "Можно ввести только целое число")
@@ -8,14 +9,14 @@ public class InsuranceCalc {
     private String realtyType;
     private String realtyBuildYear;
     private double realtyArea;
-    private String insuranceStartDate;
-    private String insuranceEndDate;
-    private String insuranceCalcDate;
+    private LocalDate insuranceStartDate;
+    private LocalDate insuranceEndDate;
+    private LocalDate insuranceCalcDate;
     private String insurancePremium;
 
     public InsuranceCalc() {}
 
-    public InsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate, String insuranceCalcDate, String insurancePremium) {
+    public InsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, double realtyArea, LocalDate insuranceStartDate, LocalDate insuranceEndDate, LocalDate insuranceCalcDate, String insurancePremium) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -26,7 +27,7 @@ public class InsuranceCalc {
         this.insurancePremium = insurancePremium;
     }
 
-    public InsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, double realtyArea, String insuranceStartDate, String insuranceEndDate) {
+    public InsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, double realtyArea, LocalDate insuranceStartDate, LocalDate insuranceEndDate) {
         this.insuranceAmount = insuranceAmount;
         this.realtyType = realtyType;
         this.realtyBuildYear = realtyBuildYear;
@@ -67,27 +68,27 @@ public class InsuranceCalc {
         this.realtyArea = realtyArea;
     }
 
-    public String getInsuranceStartDate() {
+    public LocalDate getInsuranceStartDate() {
         return insuranceStartDate;
     }
 
-    public void setInsuranceStartDate(String insuranceStartDate) {
+    public void setInsuranceStartDate(LocalDate insuranceStartDate) {
         this.insuranceStartDate = insuranceStartDate;
     }
 
-    public String getInsuranceEndDate() {
+    public LocalDate getInsuranceEndDate() {
         return insuranceEndDate;
     }
 
-    public void setInsuranceEndDate(String insuranceEndDate) {
+    public void setInsuranceEndDate(LocalDate insuranceEndDate) {
         this.insuranceEndDate = insuranceEndDate;
     }
 
-    public String getInsuranceCalcDate() {
+    public LocalDate getInsuranceCalcDate() {
         return insuranceCalcDate;
     }
 
-    public void setInsuranceCalcDate(String insuranceCalcDate) {
+    public void setInsuranceCalcDate(LocalDate insuranceCalcDate) {
         this.insuranceCalcDate = insuranceCalcDate;
     }
 

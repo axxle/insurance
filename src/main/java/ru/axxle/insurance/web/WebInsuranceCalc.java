@@ -1,6 +1,7 @@
 package ru.axxle.insurance.web;
 
 import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
 
 public class WebInsuranceCalc {
 
@@ -32,19 +33,7 @@ public class WebInsuranceCalc {
 
     public static final String insuranceEndDateCheckPattern = "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$"; //проверяет только yyyy-MM-dd
     public static final String insuranceEndDateCheckMessage = "Срок действия полиса <по> должен быть > срок действия полиса <с>. Срок действия договора не может быть больше года";
-    @Pattern (regexp = insuranceEndDateCheckPattern, message = insuranceEndDateCheckMessage)
     private String insuranceEndDate;
-
-    public static final String insuranceCalcDateCheckPattern = "^[0-9]{4}[-][0-9]{2}[-][0-9]{2}$"; //проверяет только yyyy-MM-dd
-    public static final String insuranceCalcDateCheckMessage = "Год должен быть четырехзначный и не больше текущего года";
-    //@Pattern (regexp = insuranceCalcDateCheckPattern, message = insuranceCalcDateCheckMessage)        //проверяем только при сохранения договора
-    private String insuranceCalcDate;
-
-    //Заполняется автоматически после выполнения расчета, не может быть отрицательной, округлять до 2 цифр после запятой
-    public static final String insurancePremiumCheckPattern = "^([0]([\\.][1-9][0-9]{0,1}){1})|([0]([\\.][0-9][1-9]{0,1}){1})|(([1-9]{1}[0-9]{0,})([\\.][1-9][0-9]{0,1}){1})$";
-    public static final String insurancePremiumCheckMessage = "Заполняется автоматически после выполнения расчета, не может быть отрицательной, округлять до 2 цифр после запятой";
-    //@Pattern (regexp = insurancePremiumCheckPattern, message = insurancePremiumCheckMessage) //проверяем только при сохранения договора
-    private String insurancePremium;
 
     public WebInsuranceCalc() {}
 
@@ -55,8 +44,6 @@ public class WebInsuranceCalc {
         this.realtyArea = realtyArea;
         this.insuranceStartDate = insuranceStartDate;
         this.insuranceEndDate = insuranceEndDate;
-        this.insuranceCalcDate = insuranceCalcDate;
-        this.insurancePremium = insurancePremium;
     }
 
     public WebInsuranceCalc(String insuranceAmount, String realtyType, String realtyBuildYear, String realtyArea, String insuranceStartDate, String insuranceEndDate) {
@@ -116,21 +103,5 @@ public class WebInsuranceCalc {
 
     public void setInsuranceEndDate(String insuranceEndDate) {
         this.insuranceEndDate = insuranceEndDate;
-    }
-
-    public String getInsuranceCalcDate() {
-        return insuranceCalcDate;
-    }
-
-    public void setInsuranceCalcDate(String insuranceCalcDate) {
-        this.insuranceCalcDate = insuranceCalcDate;
-    }
-
-    public String getInsurancePremium() {
-        return insurancePremium;
-    }
-
-    public void setInsurancePremium(String insurancePremium) {
-        this.insurancePremium = insurancePremium;
     }
 }

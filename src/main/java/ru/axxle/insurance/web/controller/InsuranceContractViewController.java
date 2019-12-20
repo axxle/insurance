@@ -16,17 +16,17 @@ import java.util.List;
 @RequestMapping(value = InsuranceContractViewController.REQUEST_PATH)
 public class InsuranceContractViewController {
 	public static final String REQUEST_PATH = "/insurance/view";
-	public static final String VIEW_ALL = "/";
+	public static final String ALL_VIEW = "/";
 
 	@Autowired
 	WebInsuranceContractViewService webInsuranceContractViewService;
 
 	@RequestMapping(
-			value = VIEW_ALL,
+			value = ALL_VIEW,
 			method = RequestMethod.GET
 	)
 	public @ResponseBody
-	ResponseEntity<List<WebInsuranceContractView>> getAll() {
+	ResponseEntity<List<WebInsuranceContractView>> getAllView() {
 		return new ResponseEntity<>(webInsuranceContractViewService.getAll(), HttpStatus.OK);
 	}
 }

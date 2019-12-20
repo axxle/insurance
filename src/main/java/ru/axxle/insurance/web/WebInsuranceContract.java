@@ -6,18 +6,18 @@ public class WebInsuranceContract {
     private String contractDate;
     private String status;
 
-    private WebInsuranceCalc calcInfo = new WebInsuranceCalc();
+    private WebInsuranceCalcFull calcInfoFull;
     private WebInsuranceClient holderInfo = new WebInsuranceClient();
     private WebRealtyLocation realtyLocation = new WebRealtyLocation();
 
     public WebInsuranceContract() {
     }
 
-    public WebInsuranceContract(String contractId, String contractDate, String status, WebInsuranceCalc calcInfo, WebInsuranceClient holderInfo, WebRealtyLocation realtyLocation) {
+    public WebInsuranceContract(String contractId, String contractDate, String status, WebInsuranceCalcFull calcInfoFull, WebInsuranceClient holderInfo, WebRealtyLocation realtyLocation) {
         this.contractId = contractId;
         this.contractDate = contractDate;
         this.status = status;
-        this.calcInfo = calcInfo;
+        this.calcInfoFull = calcInfoFull;
         this.holderInfo = holderInfo;
         this.realtyLocation = realtyLocation;
     }
@@ -46,12 +46,12 @@ public class WebInsuranceContract {
         this.status = status;
     }
 
-    public WebInsuranceCalc getCalcInfo() {
-        return calcInfo;
+    public WebInsuranceCalcFull getCalcInfoFull() {
+        return calcInfoFull;
     }
 
-    public void setCalcInfo(WebInsuranceCalc calcInfo) {
-        this.calcInfo = calcInfo;
+    public void setCalcInfoFull(WebInsuranceCalcFull calcInfoFull) {
+        this.calcInfoFull = calcInfoFull;
     }
 
     public WebInsuranceClient getHolderInfo() {

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import ru.axxle.insurance.web.WebInsuranceCalc;
+import ru.axxle.insurance.web.WebInsuranceCalcFull;
 import ru.axxle.insurance.web.service.WebInsuranceCalcService;
 
 import javax.validation.Valid;
@@ -23,7 +24,7 @@ public class InsuranceCalcController {
 	@RequestMapping(method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_UTF8_VALUE
 	)
-	public WebInsuranceCalc calc(@RequestBody @Valid WebInsuranceCalc entity) {
+	public WebInsuranceCalcFull calc(@RequestBody @Valid WebInsuranceCalc entity) {
 		return webInsuranceCalcService.calc(entity);
 	}
 }

@@ -40,8 +40,8 @@ public class InsuranceCalcServiceImpl implements InsuranceCalcService {
     @Override
     public InsuranceCalc calc(InsuranceCalc insuranceCalc) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");  //в модели поменять типы для этих полей
-        LocalDate startDate = LocalDate.parse(insuranceCalc.getInsuranceStartDate(), formatter);
-        LocalDate endDate = LocalDate.parse(insuranceCalc.getInsuranceEndDate(), formatter);
+        LocalDate startDate = insuranceCalc.getInsuranceStartDate();
+        LocalDate endDate = insuranceCalc.getInsuranceEndDate();
 
         BigDecimal amount = new BigDecimal(insuranceCalc.getInsuranceAmount()); //перевести в int
         int d = countNumberOfDays(startDate, endDate);
@@ -56,7 +56,7 @@ public class InsuranceCalcServiceImpl implements InsuranceCalcService {
                 factorRealtyArea
         );
         insuranceCalc.setInsurancePremium(premium.setScale(2, RoundingMode.HALF_UP).toPlainString());
-        insuranceCalc.setInsuranceCalcDate(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        insuranceCalc.setInsuranceCalcDate(LocalDate.now());
         return insuranceCalc;
     }
 

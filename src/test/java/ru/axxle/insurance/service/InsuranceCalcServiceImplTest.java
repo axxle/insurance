@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ru.axxle.insurance.InsuranceCalc;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/applicationContext.xml"})
@@ -26,9 +28,9 @@ public class InsuranceCalcServiceImplTest {
         calcModel.setRealtyType("дом");
         calcModel.setRealtyBuildYear("2015");
         calcModel.setRealtyArea(200.1);
-        calcModel.setInsuranceStartDate("2019-12-18");
-        calcModel.setInsuranceEndDate("2020-12-18");
-        calcModel.setInsuranceCalcDate("");
+        calcModel.setInsuranceStartDate(LocalDate.parse("2019-12-18", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        calcModel.setInsuranceEndDate(LocalDate.parse("2020-12-18", DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        calcModel.setInsuranceCalcDate(LocalDate.now());
         Assert.assertNotNull(calcService);
         calcModel = calcService.calc(calcModel);
         Assert.assertNotNull(calcModel);

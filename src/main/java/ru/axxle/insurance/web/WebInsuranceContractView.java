@@ -1,11 +1,11 @@
 package ru.axxle.insurance.web;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class WebInsuranceContractView {
     private String contractId;
-    private Date contractDate;
+    private LocalDate contractDate;
     private String policyHolder;
     private BigDecimal premium;
     private String contractDuration;
@@ -17,7 +17,7 @@ public class WebInsuranceContractView {
     }
 
 
-    public WebInsuranceContractView(String contractId, Date contractDate, String policyHolder, BigDecimal premium, String contractDuration) {
+    public WebInsuranceContractView(String contractId, LocalDate contractDate, String policyHolder, BigDecimal premium, String contractDuration) {
         this.contractId = contractId;
         this.contractDate = contractDate;
         this.policyHolder = policyHolder;
@@ -33,11 +33,11 @@ public class WebInsuranceContractView {
         this.contractId = contractId;
     }
 
-    public Date getContractDate() {
+    public LocalDate getContractDate() {
         return contractDate;
     }
 
-    public void setContractDate(Date contractDate) {
+    public void setContractDate(LocalDate contractDate) {
         this.contractDate = contractDate;
     }
 

@@ -1,4 +1,4 @@
-package ru.axxle.insurance.web.controller;
+package ru.axxle.insurance.web.controller.handler;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
