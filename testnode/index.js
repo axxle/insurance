@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser');
 const myValidation = require('./my-validation-script');
-const PORT = process.env.PORT || 5252;
+const PORT = 5252;
 
 var app = express();
 
