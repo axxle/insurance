@@ -30,7 +30,7 @@ public class Validator {
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<WebInsuranceCalc> entity = new HttpEntity<WebInsuranceCalc>(webModel,headers);
         try {
-            HttpEntity<WebInsuranceCalc> result = restTemplate.exchange("http://localhost:5252/validate", HttpMethod.POST, entity, WebInsuranceCalc.class);
+            HttpEntity<WebInsuranceCalc> result = restTemplate.exchange(validateUrl, HttpMethod.POST, entity, WebInsuranceCalc.class);
             validatedWebModel = result.getBody();
         } catch(HttpStatusCodeException e) {
             if (e.getRawStatusCode() == 400) {

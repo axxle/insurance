@@ -10,7 +10,9 @@
 
     <!-- Service -->
     <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" scope="prototype"></bean>
-    <bean id="Validator" class="ru.axxle.insurance.web.validation.Validator" scope="prototype"></bean>
+    <bean id="Validator" class="ru.axxle.insurance.web.validation.Validator" scope="prototype">
+        <constructor-arg type="java.lang.String" name="validateUrl" value="{service.validation.server.url}" />
+    </bean>
 
     <bean id="webInsuranceCalcService"  class="ru.axxle.insurance.web.service.WebInsuranceCalcServiceImpl" />
 
