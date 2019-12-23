@@ -50,232 +50,78 @@
 
 <body>
 
-<div class="tFormContainer" id="allContractsView">
-	<table>
-		<tr>
-			<td><button onclick="openPrefilledContract()">Создать договор</button></td>
-			<td><button onclick="openContractById(currentSelectedContract)">Открыть договор</button></td>
-			<td></td>
-		</tr>
-	</table>
-
-	<table id="allContractsViewTableId" class="alignL">
-		<thead class="alignC">
-		<tr class="backgroundGrey">
-			<th>Серия-Номер</th>
-			<th>Дата заключения</th>
-			<th>Страхователь</th>
-			<th>Премия</th>
-			<th>Срок действия</th>
-		</tr>
-		</thead>
-	</table>
-</div>
-
-<div class="tFormContainer" id="singleContractEditForm">
-	<fieldset class="tFormContainer">
-		<legend>Расчет</legend>
-		<form id="calcForm">
-			<table class="tForm">
-				<tr>
-					<!-- Страховая сумма		Целое	Доступно	Обязательное	Ввод с клавиатуры -->
-					<td class="alignR"><label for="insuranceAmount">Страховая сумма</label></td>
-					<td class="alignL"><input type="number" name="insuranceAmount" id="insuranceAmount"></td>
-					<!-- Срок действия с 	Дата	Доступно	Обязательное	Ввод с клавиатуры, выбор из календаря		Текущая дата	"Срок действия полиса  с" должен быть >= текущей дате -->
-					<td class="alignR"><label for="insuranceStartDate">Срок действия с</label></td>
-					<td class="alignL"><input type="date" name="insuranceStartDate" id="insuranceStartDate"></td>
-					<!-- Срок действия по	Дата	Доступно	Обязательное	Ввод с клавиатуры, выбор из календаря		"""Срок действия полиса по"" должен быть > ""срок действия полиса с"".
-                    Срок действия договора не может быть больше года."-->
-					<td class="alignL"><label for="insuranceEndDate"> по </label><input type="date" name="insuranceEndDate" id="insuranceEndDate"></td>
-				</tr>
-				<tr>
-					<!-- Тип недвижимости	Список	Доступно	Обязательное	Выбор из списка				"Содержание списка: квартира, дом, комната" -->
-					<td class="alignR"><label for="realtyType">Тип недвижимости</label></td>
-					<td class="alignL">
-						<input list="realtyTypeList" name="realtyType" id="realtyType" >
-						<datalist id="realtyTypeList">
-							<option value="квартира" title="apartment">
-							<option value="дом" title="house">
-							<option value="комната" title="room">
-						</datalist>
-					</td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-				<!-- Год постройки		Строка	Доступно	Обязательное	Выбор из списка				Год должен быть четырехзначный и не больше текущего года. -->
-				<td class="alignR"><label for="realtyBuildYear">Год постройки</label></td>
-				<td class="alignL"><input type="text" name="realtyBuildYear" id="realtyBuildYear"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				</tr>
-				<!-- Площадь, кв.м.		Строка	Доступно	Обязательное	Ввод с клавиатуры			Должна быть возможность ввода не целых чисел, после запятой доступен только 1 знак -->
-				<td class="alignR"><label for="realtyArea">Площадь, кв.м.</label></td>
-				<td class="alignL"><input type="text" name="realtyArea" id="realtyArea"></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				</tr>
-				<td colspan="2"></td>
-				<td colspan="3" class="alignL"><input type="submit" value="Рассчитать"></td>
-				</tr>
-				<!-- Дата расчета		Дата	Нет			Обязательное	Присваивается системой		Дата выполнения расчета	Заполняется автоматически после выполнения расчета -->
-				<td class="alignR"><label for="insuranceCalcDate">Дата расчета</label></td>
-				<td class="alignL"><input type="date" name="insuranceCalcDate" id="insuranceCalcDate" readonly></td>
-				<!-- Премия				Строка	Доступно	Обязательное	Присваивается системой		Заполняется автоматически после выполнения расчета, не может быть отрицательной, округлять до 2 цифр после запятой -->
-				<td class="alignR"><label for="insurancePremium">Премия</label></td>
-				<td class="alignL"><input type="text" name="insurancePremium" id="insurancePremium"></td>
-				<td></td>
-				</tr>
-			</table>
-		</form>
-	</fieldset>
-    <form id="contractForm" class="tFormContainer">
+<fieldset class="tFormContainer">
+    <legend>Расчет</legend>
+    <form id="calcForm">
         <table class="tForm">
             <tr>
-                <td><!--14--  № договора	Целое	Доступно	Обязательное	Ввод с клавиатуры		Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться -->
-                    <!--условие <не должны повторяться> будем проверять на беке при сохранении. Либо нужен отдельный рест для проверки. Считаю вообще не целесообразным вводить вручную номер договора,
-                     возможно ошибка в требованиях, уточнить -->
-                    <label for="contractId">№ договора</label></td>
-                <td>
-                    <input type="text" id="contractId" name="contractId" pattern="[0-9]{6}" title="Номер договора должен состоять из 6 цифр, номера договоров не должны повторяться">
-                </td>
-                <td>
-                    <!--15-- Дата заключения	Дата	Нет	Обязательное	Присваивается системой	Текущая дата	 -->
-                    <!--нужно будет засетить value, данные взять или из префила, либо системное время на фронте-->
-                    <label for="contractDate" required>Дата заключения</label>
-                </td>
-                <td>
-                    <input type="date" id="contractDate" name="contractDate" readonly><input type="text" class="notDisplayed" id="status" name="status" readonly>
-                </td>
-            </tr>
-        </table>
-    </form>
-    <form id="clientForm" class="tFormContainer">
-        <table class="tForm">
-            <tr>
-                <td colspan="7" class="alignL"><b>СТРАХОВАТЕЛЬ</b></td>
+                <!-- Страховая сумма		Целое	Доступно	Обязательное	Ввод с клавиатуры -->
+                <td class="alignR"><label for="insuranceAmount">Страховая сумма</label></td>
+                <td class="alignL"><input type="number" name="insuranceAmount" id="insuranceAmount"></td>
+                <!-- Срок действия с 	Дата	Доступно	Обязательное	Ввод с клавиатуры, выбор из календаря		Текущая дата	"Срок действия полиса  с" должен быть >= текущей дате -->
+                <td class="alignR"><label for="insuranceStartDate">Срок действия с</label></td>
+                <td class="alignL"><input type="date" name="insuranceStartDate" id="insuranceStartDate"></td>
+                <!-- Срок действия по	Дата	Доступно	Обязательное	Ввод с клавиатуры, выбор из календаря		"""Срок действия полиса по"" должен быть > ""срок действия полиса с"".
+                Срок действия договора не может быть больше года."-->
+                <td class="alignL"><label for="insuranceEndDate"> по </label><input type="date" name="insuranceEndDate" id="insuranceEndDate"></td>
             </tr>
             <tr>
-                <td class="alignL"><button id="openSearchHolderDialog">Выбрать</button></td>
-                <td class="alignR"><label for="holderFullName"> ФИО </label></td>
-                <td colspan="4" class="alignL"><input type="text" id="holderFullName" name="fullName"></td>
-                <td class="alignR"><button>Изменить</button></td>
-            </tr>
-            <tr>
-                <td colspan="2" class="alignL"><label for="holderBirthDate">Дата рождения</label></td>
-                <td class="alignL"><input type="date" id="holderBirthDate" name="birthDate"></td>
-                <td class="alignR"><label for="holderPassportSeries"> Паспорт серия </label></td>
-                <td class="alignL"><input type="text" id="holderPassportSeries" name="passportSeries"></td>
-                <td colspan="2" class="alignR"><label for="holderPassportNumber"> номер </label><input type="text" name="passportNumber" id="holderPassportNumber"></td>
-            </tr>
-        </table>
-    </form>
-
-    <form id="realtyLocationForm" class="tFormContainer">
-        <table class="tForm">
-            <tr>
-                <td colspan="4">Адрес недвижимости</b></td>
-            </tr>
-            <tr>
-                <td>
-                    <input list="countryList" name="country" id="country" >
-                    <datalist id="countryList">
-                        <option value="Россия">
-                        <option value="другое">
+                <!-- Тип недвижимости	Список	Доступно	Обязательное	Выбор из списка				"Содержание списка: квартира, дом, комната" -->
+                <td class="alignR"><label for="realtyType">Тип недвижимости</label></td>
+                <td class="alignL">
+                    <input list="realtyTypeList" name="realtyType" id="realtyType" >
+                    <datalist id="realtyTypeList">
+                        <option value="квартира" title="apartment">
+                        <option value="дом" title="house">
+                        <option value="комната" title="room">
                     </datalist>
                 </td>
-                <td>
-                    <input type="text" id="postIndex" name="postIndex">
-                </td>
-                <td>
-                    <input type="text" id="federalRegion" name="federalRegion">
-                </td>
-                <td>
-                    <input type="text" id="district" name="district">
-                </td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
-            <tr>
-                <td>
-                    <label for="country">государство</label>
-                </td>
-                <td>
-                    <label for="postIndex">индекс</label>
-                </td>
-                <td>
-                    <label for="federalRegion">республика, край, область</label>
-                </td>
-                <td>
-                    <label for="district">район</label>
-                </td>
+            <!-- Год постройки		Строка	Доступно	Обязательное	Выбор из списка				Год должен быть четырехзначный и не больше текущего года. -->
+            <td class="alignR"><label for="realtyBuildYear">Год постройки</label></td>
+            <td class="alignL"><input type="text" name="realtyBuildYear" id="realtyBuildYear"></td>
+            <td></td>
+            <td></td>
+            <td></td>
             </tr>
-        </table>
-        <table class="tForm">
-            <tr>
-                <td>
-                    <input type="text" id="place" name="place">
-                </td>
-                <td>
-                    <input type="text" id="street" name="street">
-                </td>
-                <td>
-                    <input type="text" id="houseNumber" name="houseNumber">
-                </td>
-                <td>
-                    <input type="text" id="houseBlock" name="houseBlock">
-                </td>
-                <td>
-                    <input type="text" id="building" name="building">
-                </td>
-                <td>
-                    <input type="text" id="apartment" name="apartment">
-                </td>
+            <!-- Площадь, кв.м.		Строка	Доступно	Обязательное	Ввод с клавиатуры			Должна быть возможность ввода не целых чисел, после запятой доступен только 1 знак -->
+            <td class="alignR"><label for="realtyArea">Площадь, кв.м.</label></td>
+            <td class="alignL"><input type="text" name="realtyArea" id="realtyArea"></td>
+            <td></td>
+            <td></td>
+            <td></td>
             </tr>
-            <tr>
-                <td>
-                    <label for="place">населенный пункт</label>
-                </td>
-                <td>
-                    <label for="street">улица</label>
-                </td>
-                <td>
-                    <label for="houseNumber">дом</label>
-                </td>
-                <td>
-                    <label for="houseBlock">корпус</label>
-                </td>
-                <td>
-                    <label for="building">строение</label>
-                </td>
-                <td>
-                    <label for="apartment">квартира</label>
-                </td>
+            <td colspan="2"></td>
+            <td colspan="3" class="alignL"><input type="submit" value="Рассчитать"></td>
             </tr>
-            <tr>
-                <td colspan="6">КОММЕНТАРИЙ</td>
-            </tr>
-            <tr>
-                <td align="right" valign="top" id="contractCommentDescription">
-                    комментарий к<br/> договору (не<br/> печатается на<br/> полисе)
-                </td>
-                <td colspan="5">
-                    <textarea name="text" class="contractCommentArea" id="comment"  name="comment"></textarea>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="6">
-                    <input type="button" value="Сохранить" onclick="saveContract()"/>
-                    <input type="button" value="К списку договоров" onclick="returnToAllContractsView()"/>
-                </td>
+            <!-- Дата расчета		Дата	Нет			Обязательное	Присваивается системой		Дата выполнения расчета	Заполняется автоматически после выполнения расчета -->
+            <td class="alignR"><label for="insuranceCalcDate">Дата расчета</label></td>
+            <td class="alignL"><input type="date" name="insuranceCalcDate" id="insuranceCalcDate" readonly></td>
+            <!-- Премия				Строка	Доступно	Обязательное	Присваивается системой		Заполняется автоматически после выполнения расчета, не может быть отрицательной, округлять до 2 цифр после запятой -->
+            <td class="alignR"><label for="insurancePremium">Премия</label></td>
+            <td class="alignL"><input type="text" name="insurancePremium" id="insurancePremium"></td>
+            <td></td>
             </tr>
         </table>
     </form>
-</div>
+</fieldset>
 
 <script>
 	(function (){
-		getAndFillAllContractsView();
+		//getAndFillAllContractsView();.
+        fillCalcForm({
+            insuranceAmount: "366000",
+            realtyType: "дом",
+            realtyBuildYear: "2015",
+            realtyArea: "102.0",
+            insuranceStartDate: "2019-12-12",
+            insuranceEndDate: "2020-12-12",
+            insuranceCalcDate: "",
+            insurancePremium: ""
+        });
 	}());
 
 	function getAndFillAllContractsView() {
@@ -307,56 +153,20 @@
 	}
 
 	function openPrefilledContract() {
-		$.ajax({
-			type: "GET",
-			contentType: "application/json",
-			url: "insurance/contract/prefill",
-			cache: false,
-			success: function(prefilledContractModel){
-				openContractEditForm(prefilledContractModel);
-				currentSelectedContract = null;
-                //тестовые данные для проверки формы расчета премии
-                fillCalcForm({
-                    insuranceAmount: "366000",
-                    realtyType: "дом",
-                    realtyBuildYear: "2015",
-                    realtyArea: "102.0",
-                    insuranceStartDate: "2019-12-12",
-                    insuranceEndDate: "2020-12-12",
-                    insuranceCalcDate: "",
-                    insurancePremium: ""
-                });
-			}
-		});
-	}
-
-	var currentSelectedContract = null;
-	document.getElementById('allContractsViewTableId').addEventListener('click', setCurrentSelectedContract);
-	function setCurrentSelectedContract(e) {
-		let trId = e.target.parentNode.getAttribute("id");
-		currentSelectedContract = trId.substring(trIdPrefix.length);
-	}
-	document.getElementById('allContractsViewTableId').addEventListener('dblclick', openContractByDblClick);
-	function openContractByDblClick(e) {
-        let trId = e.target.parentNode.getAttribute("id");
-        currentSelectedContract = trId.substring(trIdPrefix.length);
-        openContractById(currentSelectedContract);
+        openContractEditForm({});
+        fillCalcForm({
+            insuranceAmount: "366000",
+            realtyType: "дом",
+            realtyBuildYear: "2015",
+            realtyArea: "102.0",
+            insuranceStartDate: "2019-12-12",
+            insuranceEndDate: "2020-12-12",
+            insuranceCalcDate: "",
+            insurancePremium: ""
+        });
     }
 
-	function openContractById(id) {
-	    if(id === null) {
-	        return;
-        }
-		$.ajax({
-			type: "GET",
-			contentType: "application/json",
-			url: "insurance/contract/" + id,
-			cache: false,
-			success: function(contractModel){
-				openContractEditForm(contractModel);
-			}
-		});
-	}
+
 
 	function openContractEditForm(contractModel) {
 		$('#singleContractEditForm').show();

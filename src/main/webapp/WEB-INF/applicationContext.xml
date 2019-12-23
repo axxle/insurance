@@ -9,8 +9,9 @@
     <!-- DAO -->
 
     <!-- Service -->
-    <bean id="webInsuranceContractViewService"  class="ru.axxle.insurance.web.service.WebInsuranceContractViewServiceImpl" />
-    <bean id="webInsuranceContractService"  class="ru.axxle.insurance.web.service.WebInsuranceContractServiceImpl" />
+    <bean id="restTemplate" class="org.springframework.web.client.RestTemplate" scope="prototype"></bean>
+    <bean id="Validator" class="ru.axxle.insurance.web.validation.Validator" scope="prototype"></bean>
+
     <bean id="webInsuranceCalcService"  class="ru.axxle.insurance.web.service.WebInsuranceCalcServiceImpl" />
 
     <bean id="calcService"  class="ru.axxle.insurance.service.InsuranceCalcServiceImpl">
